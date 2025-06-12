@@ -1,0 +1,20 @@
+{
+  "result": {
+    "trades": [],
+    "liquidities": [],
+    "tokens": [],
+    "tokenPrices": [],
+    "userTradingSummary": []
+  },
+  "state": false,
+  "fee": {
+    "amount": "0",
+    "uiAmount": 0,
+    "decimals": 9
+  },
+  "trades": [],
+  "liquidities": [],
+  "transfers": [],
+  "moreEvents": {},
+  "msg": "Parse error: undefined TypeError: Cannot read properties of undefined (reading 'message')"
+}

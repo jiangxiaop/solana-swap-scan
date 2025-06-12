@@ -1,0 +1,193 @@
+{
+    "state": true,
+    "fee": {
+        "amount": "1255000",
+        "uiAmount": 0.001255,
+        "decimals": 9
+    },
+    "trades": [
+        {
+            "type": "SELL",
+            "inputToken": {
+                "mint": "GhhhWpvhigZBt17qrehiwtoJNfkBuV9TaqaouWugpump",
+                "amount": 1815370.392047,
+                "amountRaw": "1815370392047",
+                "decimals": 6,
+                "authority": "DULT2ijn8FaUagyqTCbuidDiADUxXK9aJV1Ghi6EfhE5",
+                "destination": "J7R6R7UYwyw9YcntsC62ggvAk9YXodhENPbXZ8KiEJKR",
+                "destinationOwner": "3M7hSrWDyLMhLCVrBhZUPqhcbXigrYdb7ygENvCaB2yt",
+                "destinationBalance": {
+                    "amount": "128148842581978",
+                    "decimals": 6,
+                    "uiAmount": 128148842.581978,
+                    "uiAmountString": "128148842.581978"
+                },
+                "destinationPreBalance": {
+                    "amount": "126333472189931",
+                    "decimals": 6,
+                    "uiAmount": 126333472.189931,
+                    "uiAmountString": "126333472.189931"
+                },
+                "source": "35yGxJg4JSoVuSjto66H8oe8DqvhWzqaxoyNszBbp5ZP",
+                "sourceBalance": {
+                    "amount": "0",
+                    "decimals": 6,
+                    "uiAmount": null,
+                    "uiAmountString": "0"
+                },
+                "sourcePreBalance": {
+                    "amount": "1815370392047",
+                    "decimals": 6,
+                    "uiAmount": 1815370.392047,
+                    "uiAmountString": "1815370.392047"
+                },
+                "balanceChange": "1815370392047"
+            },
+            "outputToken": {
+                "mint": "So11111111111111111111111111111111111111112",
+                "amount": 2.0680773439999998,
+                "amountRaw": "2068077344",
+                "decimals": 9,
+                "authority": "3M7hSrWDyLMhLCVrBhZUPqhcbXigrYdb7ygENvCaB2yt",
+                "destination": "Emy6R4KTTDQffsmWx5GGnGT3NrzQ7dwXvCPETkJrkyrz",
+                "destinationOwner": "DULT2ijn8FaUagyqTCbuidDiADUxXK9aJV1Ghi6EfhE5",
+                "destinationBalance": {
+                    "amount": "2765632670",
+                    "uiAmount": 2.76563267,
+                    "decimals": 9
+                },
+                "destinationPreBalance": {
+                    "amount": "2776887670",
+                    "uiAmount": 2.77688767,
+                    "decimals": 9
+                },
+                "source": "6nV3dpFxZ7LRNHGnW4CUkTugBYwJa93Zb3F7SLA11S78",
+                "sourceBalance": {
+                    "amount": "144284453378",
+                    "decimals": 9,
+                    "uiAmount": 144.284453378,
+                    "uiAmountString": "144.284453378"
+                },
+                "sourcePreBalance": {
+                    "amount": "146353567353",
+                    "decimals": 9,
+                    "uiAmount": 146.353567353,
+                    "uiAmountString": "146.353567353"
+                },
+                "balanceChange": "-11255000"
+            },
+            "user": "DULT2ijn8FaUagyqTCbuidDiADUxXK9aJV1Ghi6EfhE5",
+            "programId": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
+            "amm": "Pumpswap",
+            "route": "",
+            "slot": "undefined",
+            "timestamp": 0,
+            "signature": "3QvhUBMprN6MHUgSn1DnE8UpvnKgCDKziSJetTQ4tTCsny6QjybCRTV2agQosH4Zdj1JFSjBGHtw84Bi3N6SmPhH",
+            "idx": "2-0",
+            "fee": {
+                "mint": "So11111111111111111111111111111111111111112",
+                "amount": 0.001036631,
+                "amountRaw": "1036631",
+                "decimals": 9
+            },
+            "signer": [
+                "DULT2ijn8FaUagyqTCbuidDiADUxXK9aJV1Ghi6EfhE5"
+            ]
+        }
+    ],
+    "liquidities": [],
+    "transfers": [],
+    "moreEvents": {
+        "Pumpswap": [
+            {
+                "type": "SELL",
+                "data": {
+                    "timestamp": 1749119986,
+                    "baseAmountIn": "1815370392047",
+                    "minQuoteAmountOut": "2043048768",
+                    "userBaseTokenReserves": "1815370392047",
+                    "userQuoteTokenReserves": "3930605427",
+                    "poolBaseTokenReserves": "126333472189931",
+                    "poolQuoteTokenReserves": "146353567353",
+                    "quoteAmountOut": "2073260496",
+                    "lpFeeBasisPoints": "20",
+                    "lpFee": "4146521",
+                    "protocolFeeBasisPoints": "5",
+                    "protocolFee": "1036631",
+                    "quoteAmountOutWithoutLpFee": "2069113975",
+                    "userQuoteAmountOut": "2067040713",
+                    "pool": "3M7hSrWDyLMhLCVrBhZUPqhcbXigrYdb7ygENvCaB2yt",
+                    "user": "DULT2ijn8FaUagyqTCbuidDiADUxXK9aJV1Ghi6EfhE5",
+                    "userBaseTokenAccount": "35yGxJg4JSoVuSjto66H8oe8DqvhWzqaxoyNszBbp5ZP",
+                    "userQuoteTokenAccount": "Emy6R4KTTDQffsmWx5GGnGT3NrzQ7dwXvCPETkJrkyrz",
+                    "protocolFeeRecipient": "9rPYyANsfQZw3DnDmKE3YCQF5E8oD89UXoHn9JFEhJUz",
+                    "protocolFeeRecipientTokenAccount": "Bvtgim23rfocUzxVX9j9QFxTbBnH8JZxnaGLCEkXvjKS",
+                    "coinCreator": "95tgsJ9fSt1YBxwf3NWgmtGSefgqnUh7AKSmA8rxCbR7",
+                    "coinCreatorFeeBasisPoints": "5",
+                    "coinCreatorFee": "1036631"
+                },
+                "slot": "undefined",
+                "timestamp": 0,
+                "signature": "3QvhUBMprN6MHUgSn1DnE8UpvnKgCDKziSJetTQ4tTCsny6QjybCRTV2agQosH4Zdj1JFSjBGHtw84Bi3N6SmPhH",
+                "idx": "2-4"
+            }
+        ]
+    },
+    "solBalanceChange": {
+        "pre": {
+            "amount": "2776887670",
+            "uiAmount": 2.77688767,
+            "decimals": 9
+        },
+        "post": {
+            "amount": "2765632670",
+            "uiAmount": 2.76563267,
+            "decimals": 9
+        },
+        "change": {
+            "amount": "-11255000",
+            "uiAmount": -0.011255,
+            "decimals": 9
+        }
+    },
+    "tokenBalanceChange": {
+        "GhhhWpvhigZBt17qrehiwtoJNfkBuV9TaqaouWugpump": {
+            "pre": {
+                "amount": "1815370392047",
+                "decimals": 6,
+                "uiAmount": 1815370.392047,
+                "uiAmountString": "1815370.392047"
+            },
+            "post": {
+                "amount": "0",
+                "decimals": 6,
+                "uiAmount": null,
+                "uiAmountString": "0"
+            },
+            "change": {
+                "amount": "-1815370392047",
+                "uiAmount": -1815370.392047,
+                "decimals": 6
+            }
+        },
+        "So11111111111111111111111111111111111111112": {
+            "pre": {
+                "amount": "3930605427",
+                "decimals": 9,
+                "uiAmount": 3.930605427,
+                "uiAmountString": "3.930605427"
+            },
+            "post": {
+                "amount": "5997646140",
+                "decimals": 9,
+                "uiAmount": 5.99764614,
+                "uiAmountString": "5.99764614"
+            },
+            "change": {
+                "amount": "2067040713",
+                "uiAmount": 2.0670407129999995,
+                "decimals": 9
+            }
+        }
+    }
+}

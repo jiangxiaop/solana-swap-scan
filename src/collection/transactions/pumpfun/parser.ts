@@ -1,6 +1,5 @@
 import { PumpFunParser } from 'solana-parser';
 import { ParsedTransactionWithMeta } from '@solana/web3.js';
-import { MOCK_CREATE_TOKEN_TRANS_DATA } from "../../../mock/trans.ts";
 import { Buffer } from "node:buffer";
 
 export const parseTransaction = (transaction: ParsedTransactionWithMeta) => {

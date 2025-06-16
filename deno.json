@@ -1,7 +1,9 @@
 {
   "nodeModulesDir": "auto",
   "tasks": {
-    "dev": "deno run --watch main.ts"
+    "dev": "deno run --watch main.ts",
+    "test": "deno test --allow-env --allow-read --allow-net --no-check  test/collection.test.ts",
+    "scanSolanaBlocks": "deno run --allow-env --allow-read --allow-net --no-check --allow-ffi src/scan/SolanaBlockScanner.ts"
   },
   "imports": {
     "@shyft-to/solana-transaction-parser": "npm:@shyft-to/solana-transaction-parser@^2.0.1",

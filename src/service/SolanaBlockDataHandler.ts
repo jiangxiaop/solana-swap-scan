@@ -28,11 +28,11 @@ export class SolanaBlockDataHandler {
   ) {
     try {
       const parseResult = await exportDexparserInstance.parseBlockData(
-          blockData,
-          blockNumber,
+        blockData,
+        blockNumber,
       );
       const fileteTransactions = parseResult.filter((tx) =>
-          tx.result?.trades?.length > 0 && tx.trades.length > 0
+        tx.result?.trades?.length > 0 && tx.trades.length > 0
       );
       const swapTransactionArray = [];
       for (let index = 0; index < fileteTransactions.length; index++) {
@@ -40,8 +40,8 @@ export class SolanaBlockDataHandler {
         for (let index = 0; index < tx.trades.length; index++) {
           try {
             const swapTransaction = await SolanaBlockDataHandler.convertData(
-                tx,
-                index,
+              tx,
+              index,
             );
             if (swapTransaction) {
               swapTransactionArray.push(swapTransaction);
@@ -173,6 +173,16 @@ export class SolanaBlockDataHandler {
     });
 
     console.log(`✅ 插入 ${values.length} 条记录到 solana_swap_transactions_token`);
+  }
+
+  // 读取单位时间后的x条数据
+  static async getXDaysData(timestamp: number,limit = 0) {
+    const data = await clickhouseClient.query({
+      query: `SELECT * FROM solana_swap_transactions_token WHERE transaction_time > ${timestamp} ${limit > 0 ? `LIMIT ${limit}` : ''}`,
+      format: 'JSONEachRow'
+    });
+    const rows = await data.json();
+    return rows;
   }
 
 }

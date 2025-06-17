@@ -1,0 +1,67 @@
+export interface SwapTransactionToken {
+    tx_hash: string;
+    transaction_time: number;
+    wallet_address: string;
+    token_amount: number;
+    token_symbol: string;
+    token_address: string;
+    quote_symbol: string;
+    quote_amount: number;
+    quote_address: string;
+    quote_price: number;
+    usd_price: number;
+    usd_amount: number;
+}
+
+export interface SwapTransactionWallet {
+    tx_hash: string;
+    transaction_time: number;
+    wallet_address: string;
+    token_amount: number;
+    token_symbol: string;
+    token_address: string;
+    quote_symbol: string;
+    quote_amount: number;
+    quote_address: string;
+    quote_price: number;
+    usd_price: number;
+    usd_amount: number;
+}
+
+
+
+export interface TokenSwapFilterData {
+    userAddress: string
+    poolAddress: string
+    txHash: string
+    isBuy: boolean
+    blockHeight: number
+    tokenSymbol: string
+    tokenAddress: string
+    quoteSymbol: string
+    quoteAddress: string
+    quotePrice: number
+    usdPrice: number
+    usdAmount: number
+    transactionTime: number
+    tokenAmount: number
+    quoteAmount: number
+}
+
+
+
+export interface UserSwapIndicators {
+    [userAddress: string]: {
+        tradeAmount: number;
+        tradeDays: number;
+        tradeTokenCount: number;
+        tradeTokenList: string[];
+        tradeTokenAmount: number[];
+        tradeTokenPrice: number[];
+        tradeTokenUsdPrice: number[];
+        tradeTokenUsdAmount: number[];
+        tradeTokenQuoteAmount: number[];
+        tradeTokenQuotePrice: number[];
+        tradeTokenQuoteUsdPrice: number[];
+    }
+}[]

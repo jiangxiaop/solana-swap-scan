@@ -95,3 +95,59 @@ export interface SolanaOnChainDataStruct {
         version: "legacy" | "v0";
     }
 }
+
+
+export interface TokenNormSnapShot {
+    blockHeight: number // 区块高度
+    blockTime: number // 区块时间
+    tokenAddress: string // 代币地址
+    buyAmount: number // 购买数量
+    sellAmount: number //售出数量
+    buyCount: number // 购买笔数
+    sellCount: number // 售出笔数
+    highPrice: number // 最高价格
+    lowPrice: number // 最低价格
+    startPrice: number //开盘价格
+    endPrice: number //收盘价格
+    avgPrice: number //平均价格
+    poolAddress: string //池子地址
+    snapShotBlockTime: number //此次快照包含的区块时间跨度
+}
+
+
+export interface SnapShotForWalletTrading {
+    walletAddress: string
+    snapshotTime: number
+    perTLTradingValue: {
+        tokenAddress: string
+        tradeAmount: number
+        tokenPrice: number
+        tokenUsdPrice: number
+        tradeSolAmount: number
+        tradeUsdAmount: number
+        isBuy: boolean
+    }[]
+    totalBuySolAmount: number
+    totalBuyUsdAmount: number
+    totalSellSolAmount: number
+    totalSellUsdAmount: number
+    buy_count: number
+    sell_count: number
+    solPrice: number
+    winCount: number
+    loseCount: number
+    currentTokenValue: {
+        tokenAddress: string
+        tokenBalance: number
+        tokenWeightBuyPrice: number
+        tokenWeightBuyUsdPrice: number
+        tokenWeightSellPrice: number
+        tokenWeightSellUsdPrice: number
+        tokenSolPrice: number
+        tokenUsdPrice: number
+        totalBuyAmount: number
+        totalSellAmount: number
+        transactions: number
+
+    }[]
+}

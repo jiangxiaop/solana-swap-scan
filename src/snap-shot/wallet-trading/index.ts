@@ -2,6 +2,8 @@ import { SnapShotForWalletTrading } from "../../type/transaction.ts";
 import { SwapTransactionToken, TokenSwapFilterData } from "../../type/swap.ts";
 import { TOKENS } from "../../constant/token.ts";
 import { SolanaBlockDataHandler } from "../../service/SolanaBlockDataHandler.ts";
+import { SnapshotInfo } from "../../type/snapshot.ts";
+import { getLatestWalletTradingSnapshot, getLatestWalletTradingSnapshotBeforeTime } from "../../service/snapshot/wallet_trading_ss.ts";
 
 interface SnapshotWalletTradingFilterData {
     [walletAddress: string]: SnapShotForWalletTrading
@@ -12,10 +14,9 @@ export const walletTradingService = {
     async initWalletTrading(
         userAddress: string,
         snapshotTime: string,
-        timeWindow: number
-    ): Promise<SnapShotForWalletTrading[]> {
-        const userPerSnapshot = await getPreWindowSnapshot(userAddress, snapshotTime, timeWindow);
-        return userPerSnapshot;
+    ): Promise<SnapShotForWalletTrading | null> {
+        const userPerSnapshot = await getLatestWalletTradingSnapshotBeforeTime(userAddress, parseInt(snapshotTime));
+        return userPerSnapshot || null;
     }
 };
 
@@ -23,9 +24,8 @@ export const walletTradingService = {
 export const initWalletTrading = async (
     userAddress: string,
     snapshotTime: string,
-    timeWindow: number
-): Promise<SnapShotForWalletTrading[]> => {
-    return walletTradingService.initWalletTrading(userAddress, snapshotTime, timeWindow);
+): Promise<SnapShotForWalletTrading | null> => {
+    return walletTradingService.initWalletTrading(userAddress, snapshotTime);
 }
 
 export const snapshotWalletTradingByTxData = async (txs: TokenSwapFilterData[]): Promise<SnapShotForWalletTrading[]> => {
@@ -36,18 +36,22 @@ export const snapshotWalletTradingByTxData = async (txs: TokenSwapFilterData[]):
 
         // 如果这个钱包地址还没有处理过，则初始化
         if (!result[walletAddress]) {
-            const walletTradingArray = await walletTradingService.initWalletTrading(walletAddress, tx.transactionTime, 0);
+            const walletTradingArray = await walletTradingService.initWalletTrading(walletAddress, tx.transactionTime);
             // 取数组的第一个元素作为钱包交易数据，并进行深拷贝以避免引用共享
-            const baseData = walletTradingArray[0];
+            const baseData = walletTradingArray;
             result[walletAddress] = baseData ? {
                 ...baseData,
                 walletAddress: walletAddress,
-                snapshotTime: tx.transactionTime,
+                snapshotTime: !tx.transactionTime || tx.transactionTime.trim() === '' || isNaN(new Date(tx.transactionTime).getTime()) 
+                    ? new Date().toISOString() 
+                    : tx.transactionTime,
                 perTLTradingValue: [], // 重置为空数组，只包含当前批次的交易
                 currentTokenValue: baseData.currentTokenValue ? [...baseData.currentTokenValue.map(item => ({ ...item }))] : []
             } : {
                 walletAddress: walletAddress,
-                snapshotTime: tx.transactionTime,
+                snapshotTime: !tx.transactionTime || tx.transactionTime.trim() === '' || isNaN(new Date(tx.transactionTime).getTime()) 
+                    ? new Date().toISOString() 
+                    : tx.transactionTime,
                 perTLTradingValue: [],
                 totalBuySolAmount: 0,
                 totalBuyUsdAmount: 0,
@@ -65,7 +69,13 @@ export const snapshotWalletTradingByTxData = async (txs: TokenSwapFilterData[]):
         const walletTrading = result[walletAddress];
 
         // 更新快照时间为当前交易时间
-        walletTrading.snapshotTime = tx.transactionTime;
+        // 验证交易时间的有效性
+        if (!tx.transactionTime || tx.transactionTime.trim() === '' || isNaN(new Date(tx.transactionTime).getTime())) {
+            console.warn(`Invalid transaction time for wallet ${walletAddress}: "${tx.transactionTime}", using current time`);
+            walletTrading.snapshotTime = new Date().toISOString();
+        } else {
+            walletTrading.snapshotTime = tx.transactionTime;
+        }
         walletTrading.solPrice = tx.usdPrice / tx.quotePrice; // SOL的USD价格
 
         if (tx.quoteAddress !== TOKENS.SOL && tx.quoteAddress !== TOKENS.USDC && tx.quoteAddress !== TOKENS.USDT) {
@@ -198,32 +208,6 @@ export const snapshotWalletTradingByTxData = async (txs: TokenSwapFilterData[]):
     return resultSnapShot;
 }
 
-/**
- * todo
- * 获取用户上一次时间窗口的快照数据
- * @param userAddress 用户地址
- * @param snapshotTime 快照时间
- * @param timeWindow 时间窗口
- */
-export const getPreWindowSnapshot = async (userAddress: string, snapshotTime: string, timeWindow: number): Promise<SnapShotForWalletTrading[]> => {
-    const result: SnapShotForWalletTrading[] = [{
-        walletAddress: "",
-        snapshotTime: "0",
-        perTLTradingValue: [],
-        totalBuySolAmount: 0,
-        totalBuyUsdAmount: 0,
-        totalSellSolAmount: 0,
-        totalSellUsdAmount: 0,
-        buy_count: 0,
-        sell_count: 0,
-        solPrice: 0,
-        winCount: 0,
-        loseCount: 0,
-        currentTokenValue: [],
-    }]
-    return result;
-}
-
 
 export const snapShotUserTokenData = async (startTimestamp: number, endTimestamp: number): Promise<SnapShotForWalletTrading[]> => {
     let pageNum = 1;
@@ -239,4 +223,8 @@ export const snapShotUserTokenData = async (startTimestamp: number, endTimestamp
     }
     const tokenTxDataFilter = SolanaBlockDataHandler.filterTokenData(totalTokenTxData);
     return snapshotWalletTradingByTxData(tokenTxDataFilter);
+}
+
+function dbToWalletTradingSnapShot(userPerSnapshot: SnapshotInfo | null): SnapShotForWalletTrading | PromiseLike<SnapShotForWalletTrading | null> | null {
+    throw new Error("Function not implemented.");
 }

@@ -6,6 +6,8 @@ import { TOKENS } from "../../constant/token.ts";
 import { TokenSwapFilterData } from "../../type/swap.ts";
 import { SnapShotForWalletTrading } from "../../type/transaction.ts";
 import { snapshotWalletTradingByTxData, walletTradingService } from "./index.ts";
+import { SolanaBlockDataHandler } from "../../service/SolanaBlockDataHandler.ts";
+import client from "../../../config/db.ts";
 
 
 const mockData: TokenSwapFilterData[] = [
@@ -333,7 +335,7 @@ Deno.test("snapshotTokenValueByTxData", async () => {
     const initWalletTradingStub = stub(
         walletTradingService,
         "initWalletTrading",
-        () => Promise.resolve(mock_per_tw_snapshot_data)
+        () => Promise.resolve(mock_per_tw_snapshot_data[0])
     );
 
     try {
@@ -431,7 +433,7 @@ Deno.test("snapshotTokenValueByTxData - 用户清仓代币测试", async () => {
     const clearanceStub = stub(
         walletTradingService,
         "initWalletTrading",
-        () => Promise.resolve(mockHistoryData)
+        () => Promise.resolve(mockHistoryData[0])
     );
 
     try {
@@ -572,7 +574,7 @@ Deno.test("snapshotTokenValueByTxData - 复杂清仓场景测试", async () => {
     const complexStub = stub(
         walletTradingService,
         "initWalletTrading",
-        () => Promise.resolve(mockComplexHistoryData)
+        () => Promise.resolve(mockComplexHistoryData[0])
     );
 
     try {
@@ -582,4 +584,15 @@ Deno.test("snapshotTokenValueByTxData - 复杂清仓场景测试", async () => {
     } finally {
         complexStub.restore();
     }
+});
+
+
+
+Deno.test("getLatestWalletTradingSnapshotBeforeTime", async () => {
+    const txData = Deno.readTextFileSync("./txdata.json");
+    const txDataArray = JSON.parse(txData);
+    const txDataFilter = SolanaBlockDataHandler.filterTokenData(txDataArray);
+    const result = await snapshotWalletTradingByTxData(txDataFilter);
+    console.log(result.length);
+    await client.close();
 });

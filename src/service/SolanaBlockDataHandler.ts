@@ -190,6 +190,17 @@ export class SolanaBlockDataHandler {
     return rows as SwapTransactionToken[];
   }
 
+
+  static async getXDaysDataByTimestamp(startTimestamp: number, endTimestamp: number, pageNum: number, pageSize: number): Promise<SwapTransactionToken[]> {
+    const data = await clickhouseClient.query({
+      query: `SELECT * FROM solana_swap_transactions_token WHERE transaction_time > ${startTimestamp} AND transaction_time < ${endTimestamp} ORDER BY transaction_time DESC LIMIT ${pageNum * pageSize},${pageSize}`,
+      format: 'JSONEachRow'
+    });
+
+    const rows = await data.json();
+    return rows as SwapTransactionToken[];
+  }
+
   static filterTokenData(data: SwapTransactionToken[]): TokenSwapFilterData[] {
 
     const result: TokenSwapFilterData[] = [];

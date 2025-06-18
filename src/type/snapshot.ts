@@ -5,6 +5,7 @@ export enum SnapShotType {
 
 
 export interface SnapshotInfo {
+    id?: number;
     timestamp: number;
     type: SnapShotType;
     blockHeight: number;

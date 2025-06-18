@@ -113,14 +113,6 @@ const filterTokenData = (data: SwapTransactionToken[], native_token_usd_price: n
 };
 
 
-/**
- * 这个方法是通过从数据库中获取到的数据 进行地址维度的计算
- * 
- * @param data 
- */
-const smartMoneyFilter = (data: TokenSwapFilterData[]) => {
-    const result: TokenSwapFilterData[] = []
-}
 
 
 const parseSmartMoney = (data: any) => {

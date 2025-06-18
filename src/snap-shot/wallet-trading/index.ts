@@ -1,6 +1,7 @@
 import { SnapShotForWalletTrading } from "../../type/transaction.ts";
-import { TokenSwapFilterData } from "../../type/swap.ts";
+import { SwapTransactionToken, TokenSwapFilterData } from "../../type/swap.ts";
 import { TOKENS } from "../../constant/token.ts";
+import { SolanaBlockDataHandler } from "../../service/SolanaBlockDataHandler.ts";
 
 interface SnapshotWalletTradingFilterData {
     [walletAddress: string]: SnapShotForWalletTrading
@@ -10,7 +11,7 @@ interface SnapshotWalletTradingFilterData {
 export const walletTradingService = {
     async initWalletTrading(
         userAddress: string,
-        snapshotTime: number,
+        snapshotTime: string,
         timeWindow: number
     ): Promise<SnapShotForWalletTrading[]> {
         const userPerSnapshot = await getPreWindowSnapshot(userAddress, snapshotTime, timeWindow);
@@ -21,7 +22,7 @@ export const walletTradingService = {
 // 保持原有的导出函数，但内部调用服务对象
 export const initWalletTrading = async (
     userAddress: string,
-    snapshotTime: number,
+    snapshotTime: string,
     timeWindow: number
 ): Promise<SnapShotForWalletTrading[]> => {
     return walletTradingService.initWalletTrading(userAddress, snapshotTime, timeWindow);
@@ -43,7 +44,7 @@ export const snapshotWalletTradingByTxData = async (txs: TokenSwapFilterData[]):
                 walletAddress: walletAddress,
                 snapshotTime: tx.transactionTime,
                 perTLTradingValue: [], // 重置为空数组，只包含当前批次的交易
-                currentTokenValue: baseData.currentTokenValue ? [...baseData.currentTokenValue.map(item => ({...item}))] : []
+                currentTokenValue: baseData.currentTokenValue ? [...baseData.currentTokenValue.map(item => ({ ...item }))] : []
             } : {
                 walletAddress: walletAddress,
                 snapshotTime: tx.transactionTime,
@@ -128,14 +129,14 @@ export const snapshotWalletTradingByTxData = async (txs: TokenSwapFilterData[]):
             const prevTotalBuyAmount = tokenValue.totalBuyAmount;
             const prevTotalBuyCost = prevTotalBuyAmount * tokenValue.tokenWeightBuyPrice;
             const prevTotalBuyUsdCost = prevTotalBuyAmount * tokenValue.tokenWeightBuyUsdPrice;
-            
+
             const newTotalBuyAmount = prevTotalBuyAmount + tx.tokenAmount;
             const newTotalBuyCost = prevTotalBuyCost + tx.tokenAmount * tx.quotePrice;
             const newTotalBuyUsdCost = prevTotalBuyUsdCost + tx.tokenAmount * tx.usdPrice;
-            
+
             tokenValue.totalBuyAmount = newTotalBuyAmount;
             tokenValue.tokenBalance += tx.tokenAmount;
-            
+
             // 计算加权平均买入价格
             if (newTotalBuyAmount > 0) {
                 tokenValue.tokenWeightBuyPrice = newTotalBuyCost / newTotalBuyAmount;
@@ -146,14 +147,14 @@ export const snapshotWalletTradingByTxData = async (txs: TokenSwapFilterData[]):
             const prevTotalSellAmount = tokenValue.totalSellAmount;
             const prevTotalSellRevenue = prevTotalSellAmount * tokenValue.tokenWeightSellPrice;
             const prevTotalSellUsdRevenue = prevTotalSellAmount * tokenValue.tokenWeightSellUsdPrice;
-            
+
             const newTotalSellAmount = prevTotalSellAmount + tx.tokenAmount;
             const newTotalSellRevenue = prevTotalSellRevenue + tx.tokenAmount * tx.quotePrice;
             const newTotalSellUsdRevenue = prevTotalSellUsdRevenue + tx.tokenAmount * tx.usdPrice;
-            
+
             tokenValue.totalSellAmount = newTotalSellAmount;
             tokenValue.tokenBalance -= tx.tokenAmount;
-            
+
             // 计算加权平均卖出价格
             if (newTotalSellAmount > 0) {
                 tokenValue.tokenWeightSellPrice = newTotalSellRevenue / newTotalSellAmount;
@@ -166,31 +167,31 @@ export const snapshotWalletTradingByTxData = async (txs: TokenSwapFilterData[]):
 
     for (const walletAddress in result) {
         const walletTrading = result[walletAddress];
-        
+
         // 检查是否有代币需要清仓处理
         walletTrading.currentTokenValue = walletTrading.currentTokenValue.filter(tokenValue => {
             if (tokenValue.totalBuyAmount > 0) {
                 const sellRatio = tokenValue.totalSellAmount / tokenValue.totalBuyAmount;
-                
+
                 if (sellRatio > 0.99) {
                     // 用户已清仓，计算盈亏
                     const avgBuyPrice = tokenValue.tokenWeightBuyUsdPrice;
                     const avgSellPrice = tokenValue.tokenWeightSellUsdPrice;
-                    
+
                     if (avgSellPrice > avgBuyPrice) {
                         walletTrading.winCount += 1;
                     } else if (avgSellPrice < avgBuyPrice) {
                         walletTrading.loseCount += 1;
                     }
-                    
+
                     // 从currentTokenValue中移除该代币
                     return false;
                 }
             }
-            
+
             return true; // 保留未清仓的代币
         });
-        
+
         resultSnapShot.push(walletTrading);
     }
 
@@ -204,10 +205,10 @@ export const snapshotWalletTradingByTxData = async (txs: TokenSwapFilterData[]):
  * @param snapshotTime 快照时间
  * @param timeWindow 时间窗口
  */
-export const getPreWindowSnapshot = async (userAddress: string, snapshotTime: number, timeWindow: number): Promise<SnapShotForWalletTrading[]> => {
+export const getPreWindowSnapshot = async (userAddress: string, snapshotTime: string, timeWindow: number): Promise<SnapShotForWalletTrading[]> => {
     const result: SnapShotForWalletTrading[] = [{
         walletAddress: "",
-        snapshotTime: 0,
+        snapshotTime: "0",
         perTLTradingValue: [],
         totalBuySolAmount: 0,
         totalBuyUsdAmount: 0,
@@ -221,4 +222,21 @@ export const getPreWindowSnapshot = async (userAddress: string, snapshotTime: nu
         currentTokenValue: [],
     }]
     return result;
+}
+
+
+export const snapShotUserTokenData = async (startTimestamp: number, endTimestamp: number): Promise<SnapShotForWalletTrading[]> => {
+    let pageNum = 1;
+    const pageSize = 10000;
+    let totalTokenTxData: SwapTransactionToken[] = [];
+    while (true) {
+        const tokenTxData = await SolanaBlockDataHandler.getXDaysDataByTimestamp(startTimestamp, endTimestamp, pageNum, pageSize);
+        if (tokenTxData.length === 0) {
+            break;
+        }
+        totalTokenTxData = [...totalTokenTxData, ...tokenTxData];
+        pageNum++;
+    }
+    const tokenTxDataFilter = SolanaBlockDataHandler.filterTokenData(totalTokenTxData);
+    return snapshotWalletTradingByTxData(tokenTxDataFilter);
 }

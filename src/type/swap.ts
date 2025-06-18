@@ -1,6 +1,8 @@
 export interface SwapTransactionToken {
     tx_hash: string;
-    transaction_time: number;
+    transaction_time: string;
+    pool_address: string;
+    block_height: number;
     wallet_address: string;
     token_amount: number;
     token_symbol: string;
@@ -15,7 +17,9 @@ export interface SwapTransactionToken {
 
 export interface SwapTransactionWallet {
     tx_hash: string;
-    transaction_time: number;
+    transaction_time: string;
+    pool_address: string;
+    block_height: number;
     wallet_address: string;
     token_amount: number;
     token_symbol: string;
@@ -43,7 +47,7 @@ export interface TokenSwapFilterData {
     quotePrice: number
     usdPrice: number
     usdAmount: number
-    transactionTime: number
+    transactionTime: string
     tokenAmount: number
     quoteAmount: number
 }

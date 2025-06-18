@@ -1,10 +1,15 @@
 import { VersionedBlockResponse } from "npm:@solana/web3.js@1.98.2";
 import { exportDexparserInstance } from "../collection/dex-parser.ts";
 import { MathUtil } from "../utils/MathUtil.ts";
-import { SOLANA_DEX_ADDRESS_TO_NAME } from "../constant/index.ts";
+import { SOLANA_DEX_ADDRESS_TO_NAME, SOLANA_DEX_BASE_TOKEN } from "../constant/index.ts";
 import { TokenPriceService } from "./TokenPriceService.ts";
 import { ParseResult } from "../type/index.ts";
 import clickhouseClient from "../../config/clickhouse.ts";
+import { SwapTransactionToken, TokenSwapFilterData } from "../type/swap.ts";
+import { BLACK_LIST_TOKEN } from "../constant/address_data/black_list.ts";
+import { WALLET_BLACKLIST } from "../constant/address_data/wallet_black_list.ts";
+import { MEVBOT_ADDRESSES } from "../constant/address_data/mev_list.ts";
+import { SNAP_SHOT_CONFIG, SOLANA_DEX_STABLE_TOKEN } from "../constant/config.ts";
 
 interface SwapTransaction {
   txHash: string;
@@ -176,13 +181,82 @@ export class SolanaBlockDataHandler {
   }
 
   // 读取单位时间后的x条数据
-  static async getXDaysData(timestamp: number,limit = 0) {
+  static async getXDaysData(timestamp: number, limit = 0): Promise<SwapTransactionToken[]> {
     const data = await clickhouseClient.query({
       query: `SELECT * FROM solana_swap_transactions_token WHERE transaction_time > ${timestamp} ${limit > 0 ? `LIMIT ${limit}` : ''}`,
       format: 'JSONEachRow'
     });
     const rows = await data.json();
-    return rows;
+    return rows as SwapTransactionToken[];
   }
+
+  static filterTokenData(data: SwapTransactionToken[]): TokenSwapFilterData[] {
+
+    const result: TokenSwapFilterData[] = [];
+
+    for (const transaction of data) {
+      if (BLACK_LIST_TOKEN.includes(transaction.token_address) ||
+        BLACK_LIST_TOKEN.includes(transaction.quote_address)) {
+        continue;
+      }
+      if (WALLET_BLACKLIST.includes(transaction.wallet_address)) {
+        continue;
+      }
+
+      if (MEVBOT_ADDRESSES.includes(transaction.wallet_address)) {
+        continue;
+      }
+
+      const LOWER_DEX_BASE_TOKEN = SOLANA_DEX_BASE_TOKEN.map(token => token.toLowerCase());
+
+      const tokenIsBase = LOWER_DEX_BASE_TOKEN.includes(transaction.token_address.toLowerCase());
+      const quoteIsBase = LOWER_DEX_BASE_TOKEN.includes(transaction.quote_address.toLowerCase());
+
+      if (!tokenIsBase && !quoteIsBase) {
+        continue;
+      }
+
+      if (tokenIsBase && quoteIsBase) {
+        continue;
+      }
+
+      const calculatedUsdPrice = transaction.usd_price;
+      const calculatedUsdAmount = transaction.usd_amount;
+
+
+      if (calculatedUsdAmount < SNAP_SHOT_CONFIG.MIN_TRANSACTION_AMOUNT) {
+        continue;
+      }
+
+      let isBuy = false;
+      if (LOWER_DEX_BASE_TOKEN.includes(transaction.token_address.toLowerCase())) {
+        isBuy = true;
+      } else if (LOWER_DEX_BASE_TOKEN.includes(transaction.quote_address.toLowerCase())) {
+        isBuy = false;
+      }
+
+      const filteredData: TokenSwapFilterData = {
+        userAddress: transaction.wallet_address,
+        poolAddress: "",
+        txHash: transaction.tx_hash,
+        isBuy: isBuy,
+        blockHeight: 0,
+        tokenSymbol: transaction.token_symbol,
+        tokenAddress: transaction.token_address,
+        quoteSymbol: transaction.quote_symbol,
+        quoteAddress: transaction.quote_address,
+        quotePrice: transaction.quote_price,
+        usdPrice: calculatedUsdPrice,
+        usdAmount: calculatedUsdAmount,
+        transactionTime: transaction.transaction_time,
+        tokenAmount: transaction.token_amount,
+        quoteAmount: transaction.quote_amount,
+      };
+
+      result.push(filteredData);
+    }
+
+    return result;
+  };
 
 }

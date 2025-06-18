@@ -22,7 +22,7 @@ const mockData: TokenSwapFilterData[] = [
         quotePrice: 1,
         usdPrice: 160,
         usdAmount: 80,
-        transactionTime: 100,
+        transactionTime: "100",
         tokenAmount: 1,
         quoteAmount: 1,
     },
@@ -39,7 +39,7 @@ const mockData: TokenSwapFilterData[] = [
         quotePrice: 1,
         usdPrice: 160,
         usdAmount: 160,
-        transactionTime: 100,
+        transactionTime: "100",
         tokenAmount: 1,
         quoteAmount: 1,
     },
@@ -56,7 +56,7 @@ const mockData: TokenSwapFilterData[] = [
         quotePrice: 1,
         usdPrice: 160,
         usdAmount: 320,
-        transactionTime: 100,
+        transactionTime: "100",
         tokenAmount: 2,
         quoteAmount: 2,
     }
@@ -66,7 +66,7 @@ const mockData: TokenSwapFilterData[] = [
 const mock_per_tw_snapshot_data: SnapShotForWalletTrading[] = [
     {
         walletAddress: "0x11111",
-        snapshotTime: 99,
+        snapshotTime: "99", // 秒级时间戳
         perTLTradingValue: [
             {
                 tokenAddress: "0x1234567890",
@@ -103,7 +103,7 @@ const mock_per_tw_snapshot_data: SnapShotForWalletTrading[] = [
     },
     {
         walletAddress: "0x22222",
-        snapshotTime: 99,
+        snapshotTime: "99", // 秒级时间戳
         perTLTradingValue: [
             {
                 tokenAddress: "0x1234567890",
@@ -154,7 +154,7 @@ const expect_snapshot_mockData: SnapShotForWalletTrading[] =
     [
         {
             walletAddress: "0x11111",
-            snapshotTime: 100,
+            snapshotTime: "100", // 秒级时间戳
             perTLTradingValue: [
                 {
                     tokenAddress: "0x1234567890",
@@ -193,7 +193,7 @@ const expect_snapshot_mockData: SnapShotForWalletTrading[] =
         },
         {
             walletAddress: "0x22222",
-            snapshotTime: 100,
+            snapshotTime: "100", // 秒级时间戳
             perTLTradingValue: [
                 {
                     tokenAddress: "0x1234567890",
@@ -351,7 +351,7 @@ Deno.test("snapshotTokenValueByTxData - 用户清仓代币测试", async () => {
     const mockHistoryData: SnapShotForWalletTrading[] = [
         {
             walletAddress: "0xClearUser",
-            snapshotTime: 99,
+            snapshotTime: "99", // 秒级时间戳
             perTLTradingValue: [],
             totalBuySolAmount: 5,
             totalBuyUsdAmount: 800,
@@ -393,7 +393,7 @@ Deno.test("snapshotTokenValueByTxData - 用户清仓代币测试", async () => {
             quotePrice: 1,
             usdPrice: 160,
             usdAmount: 1600, // 卖出价值
-            transactionTime: 100,
+            transactionTime: "100",
             tokenAmount: 10, // 卖出10个代币，完全清仓
             quoteAmount: 10,
         }
@@ -403,7 +403,7 @@ Deno.test("snapshotTokenValueByTxData - 用户清仓代币测试", async () => {
     const expectedClearanceResult: SnapShotForWalletTrading[] = [
         {
             walletAddress: "0xClearUser",
-            snapshotTime: 100,
+            snapshotTime: "100", // 秒级时间戳
             perTLTradingValue: [
                 {
                     tokenAddress: "0x1234567890",
@@ -449,7 +449,7 @@ Deno.test("snapshotTokenValueByTxData - 复杂清仓场景测试", async () => {
     const mockComplexHistoryData: SnapShotForWalletTrading[] = [
         {
             walletAddress: "0xComplexUser",
-            snapshotTime: 99,
+            snapshotTime: "99", // 秒级时间戳 
             perTLTradingValue: [],
             totalBuySolAmount: 15,
             totalBuyUsdAmount: 2400,
@@ -507,7 +507,7 @@ Deno.test("snapshotTokenValueByTxData - 复杂清仓场景测试", async () => {
             quotePrice: 1.5,
             usdPrice: 240,
             usdAmount: 2400, // 10 * 240 = 2400
-            transactionTime: 100,
+            transactionTime: "100",
             tokenAmount: 10, // 完全清仓
             quoteAmount: 15, // 10 * 1.5 = 15
         },
@@ -525,7 +525,7 @@ Deno.test("snapshotTokenValueByTxData - 复杂清仓场景测试", async () => {
             quotePrice: 1,
             usdPrice: 160,
             usdAmount: 800, // 5 * 160 = 800
-            transactionTime: 100,
+            transactionTime: "100",
             tokenAmount: 5, // 完全清仓
             quoteAmount: 5, // 5 * 1 = 5
         }
@@ -535,7 +535,7 @@ Deno.test("snapshotTokenValueByTxData - 复杂清仓场景测试", async () => {
     const expectedComplexResult: SnapShotForWalletTrading[] = [
         {
             walletAddress: "0xComplexUser",
-            snapshotTime: 100,
+            snapshotTime: "100",
             perTLTradingValue: [
                 {
                     tokenAddress: "0xToken1",

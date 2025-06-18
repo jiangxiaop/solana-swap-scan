@@ -1,4 +1,5 @@
-import { TokenSwapFilterData } from "../../type/swap.ts";
+import { SolanaBlockDataHandler } from "../../service/SolanaBlockDataHandler.ts";
+import { SwapTransactionToken, TokenSwapFilterData } from "../../type/swap.ts";
 import { TokenNormSnapShot } from "../../type/transaction.ts";
 
 
@@ -9,7 +10,7 @@ interface SnapshotTokenFilterData {
 const initTokenNormSnapShot = (): TokenNormSnapShot => {
     return {
         blockHeight: 0,
-        blockTime: 0,
+        blockTime: "0",
         tokenAddress: "",
         buyAmount: 0,
         sellAmount: 0,
@@ -32,7 +33,7 @@ export const snapshotTokenValueByTxData = (txs: TokenSwapFilterData[]): TokenNor
         const tokenPoolKey = `${tx.tokenAddress}-${tx.poolAddress}`;
         const tokenNormSnapShot = result[tokenPoolKey] || initTokenNormSnapShot();
 
-        if (tokenNormSnapShot.blockTime === 0) {
+        if (tokenNormSnapShot.blockTime === "") {
             tokenNormSnapShot.blockTime = tx.transactionTime;
         }
 
@@ -68,7 +69,7 @@ export const snapshotTokenValueByTxData = (txs: TokenSwapFilterData[]): TokenNor
 
         tokenNormSnapShot.endPrice = tx.quotePrice;
 
-        tokenNormSnapShot.snapShotBlockTime = tx.transactionTime - tokenNormSnapShot.blockTime;
+        tokenNormSnapShot.snapShotBlockTime = Number(tx.transactionTime) - Number(tokenNormSnapShot.blockTime);
 
         tokenNormSnapShot.poolAddress = tx.poolAddress;
         tokenNormSnapShot.tokenAddress = tx.tokenAddress;
@@ -84,4 +85,22 @@ export const snapshotTokenValueByTxData = (txs: TokenSwapFilterData[]): TokenNor
 
     return resultSnapShot;
 
+}
+
+
+
+export const snapShotTokenData = async (startTimestamp: number, endTimestamp: number): Promise<TokenNormSnapShot[]> => {
+    let pageNum = 1;
+    const pageSize = 10000;
+    let totalTokenTxData: SwapTransactionToken[] = [];
+    while (true) {
+        const tokenTxData = await SolanaBlockDataHandler.getXDaysDataByTimestamp(startTimestamp, endTimestamp, pageNum, pageSize);
+        if (tokenTxData.length === 0) {
+            break;
+        }
+        totalTokenTxData = [...totalTokenTxData, ...tokenTxData];
+        pageNum++;
+    }
+    const tokenTxDataFilter = SolanaBlockDataHandler.filterTokenData(totalTokenTxData);
+    return snapshotTokenValueByTxData(tokenTxDataFilter);
 }

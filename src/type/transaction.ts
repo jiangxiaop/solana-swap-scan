@@ -99,7 +99,7 @@ export interface SolanaOnChainDataStruct {
 
 export interface TokenNormSnapShot {
     blockHeight: number // 区块高度
-    blockTime: number // 区块时间
+    blockTime: string // 区块时间
     tokenAddress: string // 代币地址
     buyAmount: number // 购买数量
     sellAmount: number //售出数量
@@ -117,7 +117,7 @@ export interface TokenNormSnapShot {
 
 export interface SnapShotForWalletTrading {
     walletAddress: string
-    snapshotTime: number
+    snapshotTime: string
     perTLTradingValue: {
         tokenAddress: string
         tradeAmount: number

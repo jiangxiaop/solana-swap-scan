@@ -1,54 +1,84 @@
+// src/scan/SolanaBlockScanner.ts
 import { SolanaBlockUtil } from "../utils/SolanaBlockUtil.ts";
 import redisClient from "../../config/redis.ts";
-import {getBlockValue} from "../lib/utils.ts";
-import {SolanaBlockDataHandler} from "../service/SolanaBlockDataHandler.ts";
+import { SolanaBlockDataHandler } from "../service/SolanaBlockDataHandler.ts";
+import {SolanaConnectionPool} from "../utils/SolanaConnectionPool.ts";
 
 const REDIS_KEY_LAST_BLOCK = "scanner:last_block";
+const REDIS_FAILED_SLOTS = "scanner:failed_slots";
 
 export class SolanaBlockScanner {
     private isRunning = false;
+    private readonly batchSize = SolanaConnectionPool.getPoolSize();
 
     public async start(): Promise<void> {
         this.isRunning = true;
 
         while (this.isRunning) {
             try {
-                // 获取最新高度
+                let startTime = Date.now();
                 const latestHeight = await SolanaBlockUtil.getLatestSlot();
-                const cached = await redisClient.get(REDIS_KEY_LAST_BLOCK);
-                let currentHeight = cached ? parseInt(cached) :0 // 初始从 latest - 10 开始
-                if (currentHeight===0){
-                    currentHeight=latestHeight;
-                    await redisClient.set(REDIS_KEY_LAST_BLOCK, String(currentHeight+1));
+                let cached = await redisClient.get(REDIS_KEY_LAST_BLOCK);
+                let currentHeight = cached ? parseInt(cached) : 0;
+                if (currentHeight === 0) {
+                    currentHeight = latestHeight;
+                    await redisClient.set(REDIS_KEY_LAST_BLOCK, String(currentHeight));
                 }
-                while (currentHeight <= latestHeight-10) {
-                    console.log(`⬇️ 正在获取区块 ${currentHeight} ...,latestHeight ${latestHeight}`);
-                    let start= Date.now();
-                    let blockData = await SolanaBlockUtil.getBlockData(currentHeight);
-                    if (blockData.skip) {
-                        // 跳过缺失高度
-                        console.log(`跳过缺失高度 ${currentHeight}`);
-                        await redisClient.set(REDIS_KEY_LAST_BLOCK, String(currentHeight+1));
-                        currentHeight++;
-                        continue;
-                    }
-                    if (!blockData.data) {
-                        continue;
-                    }
-                    const data=blockData.data;
-                    console.log(`fetch block ${currentHeight},transactions:${data.transactions.length},cost:${Date.now() - start} ms`);
-                    SolanaBlockDataHandler.handleBlockData(data,currentHeight)
-                    // 缓存最新处理高度
-                    await redisClient.set(REDIS_KEY_LAST_BLOCK, String(currentHeight+1));
-                    currentHeight++;
+
+                const maxAvailableSlot = latestHeight - 10;
+
+                const slots = Array.from({ length: this.batchSize }, (_, i) => currentHeight + i)
+                    .filter(slot => slot <= maxAvailableSlot);
+
+                if (slots.length === 0) {
+                    continue;
                 }
-                // 等待 1 秒后再查最新区块高度
+
+                const results = await Promise.allSettled(
+                    slots.map((slot,index) => this.processSlot(slot,index))
+                );
+
+                const failedSlots: number[] = [];
+                let successCount = 0;
+
+                for (let i = 0; i < results.length; i++) {
+                    const result = results[i];
+                    const slot = slots[i];
+
+                    if (result.status === "fulfilled") {
+                        successCount++;
+                    } else {
+                        failedSlots.push(slot);
+                    }
+                }
+
+                if (successCount > 0) {
+                    await redisClient.set(REDIS_KEY_LAST_BLOCK, String(currentHeight + this.batchSize));
+                }
+
+                if (failedSlots.length > 0) {
+                    await redisClient.sadd(REDIS_FAILED_SLOTS, ...failedSlots.map(String));
+                }
+                console.log(`processed ${slots.length} slots, success: ${successCount}, failed: ${failedSlots.length}, batch process time:`, Date.now() - startTime);
                 await this.delay(200);
             } catch (err) {
                 console.error("❌ 区块扫描出错：", err);
-                await this.delay(2000); // 错误时稍等重试
+                await this.delay(2000);
             }
         }
+    }
+
+    private async processSlot(slot: number,index:number): Promise<void> {
+        const start=Date.now();
+        const blockData = await SolanaBlockUtil.getBlockData(slot,index);
+        if (blockData.skip) {
+            return;
+        }
+        if (!blockData.data) {
+            throw new Error(`Block ${slot} unavailable`);
+        }
+        console.log(`fetch block data ${slot},cost:${Date.now() - start} ms`);
+        await SolanaBlockDataHandler.handleBlockData(blockData.data, slot);
     }
 
     public stop() {
@@ -56,8 +86,9 @@ export class SolanaBlockScanner {
     }
 
     private async delay(ms: number) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+        return new Promise((resolve) => setTimeout(resolve, ms));
     }
 }
-const solanaBlockScanner = new SolanaBlockScanner();
-solanaBlockScanner.start();
+
+const scanner = new SolanaBlockScanner();
+scanner.start();

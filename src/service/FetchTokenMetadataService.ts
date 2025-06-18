@@ -40,7 +40,7 @@ export class FetchTokenMetadataService {
         try {
             asset = await fetchDigitalAsset(this.umi, mintPublicKey);
         } catch (err) {
-            console.warn("fetchDigitalAsset failed:", err);
+            // console.warn("fetchDigitalAsset failed:", err);
         }
 
         if (!asset) {

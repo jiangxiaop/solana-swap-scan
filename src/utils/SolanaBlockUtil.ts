@@ -1,5 +1,6 @@
 // src/utils/SolanaBlockUtil.ts
 import solana_connect_instance from "../lib/solana.ts";
+import {SolanaConnectionPool} from "./SolanaConnectionPool.ts";
 
 export class SolanaBlockUtil {
   private static connection = solana_connect_instance.getConnection(); // 使用你的 Solana 连接实例o
@@ -35,9 +36,9 @@ export class SolanaBlockUtil {
     return await this.connection.getFirstAvailableBlock();
   }
 
-  public static async getBlockData (blockNumber: number): Promise<{ data: any; skip: boolean }> {
+  public static async getBlockData (blockNumber: number,index:number): Promise<{ data: any; skip: boolean }> {
     try {
-      const connection = solana_connect_instance.getConnection();
+      const connection = SolanaConnectionPool.getConnection(index);//solana_connect_instance.getConnection();
       const block = await connection.getBlock(blockNumber, {
         maxSupportedTransactionVersion: 0,
       });

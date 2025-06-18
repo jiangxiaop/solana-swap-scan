@@ -26,37 +26,38 @@ export class SolanaBlockDataHandler {
     blockData: VersionedBlockResponse,
     blockNumber: number,
   ) {
-    try {
-      const parseResult = await exportDexparserInstance.parseBlockData(
-          blockData,
-          blockNumber,
-      );
-      const fileteTransactions = parseResult.filter((tx) =>
-          tx.result?.trades?.length > 0 && tx.trades.length > 0
-      );
-      const swapTransactionArray = [];
-      for (let index = 0; index < fileteTransactions.length; index++) {
-        const tx = fileteTransactions[index];
-        for (let index = 0; index < tx.trades.length; index++) {
-          try {
-            const swapTransaction = await SolanaBlockDataHandler.convertData(
-                tx,
-                index,
-            );
-            if (swapTransaction) {
-              swapTransactionArray.push(swapTransaction);
-            }
-          } catch (error) {
-            console.log("SolanaBlockDataHandler.convertData error", error);
+    // try {
+    //
+    // } catch (e) {
+    //   console.log(`SolanaBlockDataHandler.handleBlockData error,blockNumber:${blockNumber}`, e); //non
+    // }
+    const parseResult = await exportDexparserInstance.parseBlockData(
+        blockData,
+        blockNumber,
+    );
+    const fileteTransactions = parseResult.filter((tx) =>
+        tx.result?.trades?.length > 0 && tx.trades.length > 0
+    );
+    const swapTransactionArray = [];
+    for (let index = 0; index < fileteTransactions.length; index++) {
+      const tx = fileteTransactions[index];
+      for (let index = 0; index < tx.trades.length; index++) {
+        try {
+          const swapTransaction = await SolanaBlockDataHandler.convertData(
+              tx,
+              index,
+          );
+          if (swapTransaction) {
+            swapTransactionArray.push(swapTransaction);
           }
+        } catch (error) {
+          console.log("SolanaBlockDataHandler.convertData error", error);
         }
       }
-      if (swapTransactionArray.length > 0) {
-        await this.insertToTokenTable(swapTransactionArray);
-        await this.insertToWalletTable(swapTransactionArray);
-      }
-    } catch (e) {
-      console.log(`SolanaBlockDataHandler.handleBlockData error,blockNumber:${blockNumber}`, e); //non
+    }
+    if (swapTransactionArray.length > 0) {
+      await this.insertToTokenTable(swapTransactionArray);
+      await this.insertToWalletTable(swapTransactionArray);
     }
   }
   static async convertData(

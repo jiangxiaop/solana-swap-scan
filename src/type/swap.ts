@@ -1,5 +1,12 @@
+export enum ESwapTradeType {
+    BUY = "BUY",
+    SELL = "SELL",
+}
+
+
 export interface SwapTransactionToken {
     tx_hash: string;
+    trade_type: ESwapTradeType;
     transaction_time: string;
     pool_address: string;
     block_height: number;
@@ -17,6 +24,7 @@ export interface SwapTransactionToken {
 
 export interface SwapTransactionWallet {
     tx_hash: string;
+    trade_type: ESwapTradeType;
     transaction_time: string;
     pool_address: string;
     block_height: number;

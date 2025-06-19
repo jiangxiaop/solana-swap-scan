@@ -38,5 +38,6 @@ export const PUMPFUN_PROGRAM_ID = "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
 
 export const SNAP_SHOT_CONFIG = {
     MIN_TRANSACTION_AMOUNT: 0.0001, // 0.0001 SOL
-    SNAPSHOT_TIME_WINDOW: 30 // 30秒 (改为秒级)
-}
+    SNAPSHOT_TIME_WINDOW: 30, // 30秒 (改为秒级)
+    BLOCKS_PER_SNAPSHOT: 10 // 每10个区块进行一次快照
+};

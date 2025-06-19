@@ -5,7 +5,7 @@ import { SOLANA_DEX_ADDRESS_TO_NAME, SOLANA_DEX_BASE_TOKEN } from "../constant/i
 import { TokenPriceService } from "./TokenPriceService.ts";
 import { ParseResult } from "../type/index.ts";
 import clickhouseClient from "../../config/clickhouse.ts";
-import { SwapTransactionToken, TokenSwapFilterData } from "../type/swap.ts";
+import { ESwapTradeType, SwapTransactionToken, TokenSwapFilterData } from "../type/swap.ts";
 import { BLACK_LIST_TOKEN } from "../constant/address_data/black_list.ts";
 import { WALLET_BLACKLIST } from "../constant/address_data/wallet_black_list.ts";
 import { MEVBOT_ADDRESSES } from "../constant/address_data/mev_list.ts";
@@ -183,7 +183,7 @@ export class SolanaBlockDataHandler {
   // 读取单位时间后的x条数据
   static async getXDaysData(timestamp: number, limit = 0): Promise<SwapTransactionToken[]> {
     const data = await clickhouseClient.query({
-      query: `SELECT * FROM solana_swap_transactions_token WHERE transaction_time > ${timestamp} ${limit > 0 ? `LIMIT ${limit}` : ''}`,
+      query: `SELECT * FROM solana_swap_transactions_token WHERE transaction_time > ${timestamp} ORDER BY transaction_time asc ${limit > 0 ? `LIMIT ${limit}` : ''} `,
       format: 'JSONEachRow'
     });
     const rows = await data.json();
@@ -194,6 +194,22 @@ export class SolanaBlockDataHandler {
   static async getXDaysDataByTimestamp(startTimestamp: number, endTimestamp: number, pageNum: number, pageSize: number): Promise<SwapTransactionToken[]> {
     const data = await clickhouseClient.query({
       query: `SELECT * FROM solana_swap_transactions_token WHERE transaction_time > ${startTimestamp} AND transaction_time < ${endTimestamp} ORDER BY transaction_time DESC LIMIT ${pageNum * pageSize},${pageSize}`,
+      format: 'JSONEachRow'
+    });
+
+    const rows = await data.json();
+    return rows as SwapTransactionToken[];
+  }
+
+  /**
+   * 基于区块高度范围获取交易数据
+   * @param startBlockHeight 起始区块高度
+   * @param endBlockHeight 结束区块高度
+   * @returns Promise<SwapTransactionToken[]>
+   */
+  static async getDataByBlockHeightRange(startBlockHeight: number, endBlockHeight: number): Promise<SwapTransactionToken[]> {
+    const data = await clickhouseClient.query({
+      query: `SELECT * FROM solana_swap_transactions_token WHERE block_height >= ${startBlockHeight} AND block_height <= ${endBlockHeight} ORDER BY block_height ASC`,
       format: 'JSONEachRow'
     });
 
@@ -239,18 +255,13 @@ export class SolanaBlockDataHandler {
         continue;
       }
 
-      let isBuy = false;
-      if (LOWER_DEX_BASE_TOKEN.includes(transaction.token_address.toLowerCase())) {
-        isBuy = true;
-      } else if (LOWER_DEX_BASE_TOKEN.includes(transaction.quote_address.toLowerCase())) {
-        isBuy = false;
-      }
+
 
       const filteredData: TokenSwapFilterData = {
         userAddress: transaction.wallet_address,
         poolAddress: "",
         txHash: transaction.tx_hash,
-        isBuy: isBuy,
+        isBuy: transaction.trade_type === ESwapTradeType.BUY,
         blockHeight: 0,
         tokenSymbol: transaction.token_symbol,
         tokenAddress: transaction.token_address,

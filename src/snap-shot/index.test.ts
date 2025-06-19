@@ -24,9 +24,10 @@ async function loadTestData(): Promise<any[]> {
 function convertToSwapTransactionToken(rawData: any[]): SwapTransactionToken[] {
     return rawData.map((item, index) => ({
         tx_hash: item.tx_hash,
+        trade_type: item.trade_type,
         transaction_time: item.transaction_time,
         pool_address: `pool_${item.token_address.slice(-8)}`, // 生成模拟池子地址
-        block_height: 100000 + index, // 生成模拟区块高度
+        block_height: parseInt(item.block_height) || (100000 + index), // 使用原始数据的区块高度或生成模拟区块高度
         wallet_address: item.wallet_address,
         token_amount: item.token_amount,
         token_symbol: item.token_symbol || "Unknown",
@@ -40,56 +41,59 @@ function convertToSwapTransactionToken(rawData: any[]): SwapTransactionToken[] {
     }));
 }
 
-// Mock 函数
-function mockGetXDaysDataByTimestamp(
-    startTimestamp: number,
-    endTimestamp: number,
-    pageNum: number,
-    pageSize: number
+// Mock 基于区块高度范围的数据获取函数
+function mockGetDataByBlockHeightRange(
+    startBlockHeight: number,
+    endBlockHeight: number
 ): Promise<SwapTransactionToken[]> {
     if (!testData.length) return Promise.resolve([]);
 
-    // 根据时间范围过滤数据
+    // 根据区块高度范围过滤数据
     const filteredData = testData.filter(item => {
-        const itemTime = parseInt(item.transaction_time);
-        return itemTime >= startTimestamp && itemTime <= endTimestamp;
+        const itemBlockHeight = parseInt(item.block_height) || 0;
+        return itemBlockHeight >= startBlockHeight && itemBlockHeight <= endBlockHeight;
     });
 
-    // 分页处理
-    const startIndex = (pageNum - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    const paginatedData = filteredData.slice(startIndex, endIndex);
-
-    return Promise.resolve(convertToSwapTransactionToken(paginatedData));
+    return Promise.resolve(convertToSwapTransactionToken(filteredData));
 }
 
-Deno.test("快照系统完整流程测试", async () => {
+Deno.test("快照系统完整流程测试 - 基于区块高度", async () => {
     testData = await loadTestData();
     await loadEnv();
 
     console.log(`📊 加载了 ${testData.length} 条测试数据`);
 
     try {
-        // Mock SolanaBlockDataHandler.getXDaysDataByTimestamp
-        const getXDaysDataStub = stub(
+        // Mock SolanaBlockDataHandler.getDataByBlockHeightRange
+        const getDataByBlockHeightRangeStub = stub(
             SolanaBlockDataHandler,
-            "getXDaysDataByTimestamp",
-            mockGetXDaysDataByTimestamp
+            "getDataByBlockHeightRange",
+            mockGetDataByBlockHeightRange
         );
 
-        // Mock getLatestSnapshotByType - 模拟首次运行
-        // const getLatestSnapshotStub = stub(
-        //     snapshotService,
-        //     "getLatestSnapshotByType",
-        //     () => Promise.resolve(null)
-        // );
+        console.log("🚀 开始执行基于区块高度的快照测试...");
 
-        console.log("🚀 开始执行快照测试...");
+        // 定义测试的区块高度范围
+        const startBlockHeight = 347649500;
+        const endBlockHeight = 347649550;
 
         // 执行快照函数
-        const result = await SnapshotForTokenAndWalletTrading();
+        const result = await SnapshotForTokenAndWalletTrading(startBlockHeight, endBlockHeight);
 
         console.log("📋 快照执行结果:", result);
+
+        const tokenCount: string[] = []
+
+        // 统计token数量
+        testData.forEach((item) => {
+            if (!tokenCount.includes(item.token_address)) {
+                tokenCount.push(item.token_address)
+            }
+        })
+
+        const walletCount = [...new Set(testData.map((item) => item.wallet_address))]
+
+        console.log(`🔢 统计了 ${tokenCount.length} 个token和 ${walletCount.length} 个钱包`);
 
         // 验证基本返回结果
         assert(typeof result === "object", "返回结果应该是对象");
@@ -98,7 +102,7 @@ Deno.test("快照系统完整流程测试", async () => {
         assert(typeof result.processedWindows === "number", "processedWindows 应该是数字");
         assert(typeof result.message === "string", "message 应该是字符串");
 
-        console.log(`✅ 测试完成 - 处理了 ${result.processedWindows} 个时间窗口`);
+        console.log(`✅ 测试完成 - 处理了 ${result.processedWindows} 个区块窗口`);
         console.log(`📝 消息: ${result.message}`);
 
     } finally {

@@ -148,6 +148,19 @@ export interface SnapShotForWalletTrading {
         totalBuyAmount: number
         totalSellAmount: number
         transactions: number
-
+        isCleared?: boolean
+        clearanceHistory?: {
+            clearanceTime: string
+            totalBuyAmount: number
+            totalSellAmount: number
+            avgBuyPrice: number
+            avgBuyUsdPrice: number
+            avgSellPrice: number
+            avgSellUsdPrice: number
+            transactions: number
+            isProfit: boolean
+            pnlSol: number
+            pnlUsd: number
+        }[]
     }[]
 }

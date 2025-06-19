@@ -33,13 +33,36 @@ function walletTradingSnapShotToDb(snapshot: SnapShotForWalletTrading): Omit<Wal
             console.warn(`Invalid snapshotTime (empty or null): "${snapshot.snapshotTime}", using current time`);
             validSnapshotTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
         } else {
-            // 尝试创建 Date 对象验证时间格式
-            const date = new Date(snapshot.snapshotTime);
-            if (isNaN(date.getTime())) {
-                console.warn(`Invalid snapshotTime format: "${snapshot.snapshotTime}", using current time`);
-                validSnapshotTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+            // 检查是否是Unix时间戳（数字字符串）
+            const timestampStr = snapshot.snapshotTime.trim();
+            const timestampNum = parseInt(timestampStr);
+
+            if (!isNaN(timestampNum) && timestampStr === timestampNum.toString()) {
+                // 这是一个Unix时间戳
+                let date;
+                if (timestampNum > 1e12) {
+                    // 毫秒时间戳 (13位数字)
+                    date = new Date(timestampNum);
+                } else {
+                    // 秒时间戳 (10位数字)
+                    date = new Date(timestampNum * 1000);
+                }
+
+                if (isNaN(date.getTime())) {
+                    console.warn(`Invalid Unix timestamp: "${snapshot.snapshotTime}", using current time`);
+                    validSnapshotTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+                } else {
+                    validSnapshotTime = date.toISOString().slice(0, 19).replace('T', ' ');
+                }
             } else {
-                validSnapshotTime = date.toISOString().slice(0, 19).replace('T', ' ');
+                // 尝试创建 Date 对象验证时间格式
+                const date = new Date(snapshot.snapshotTime);
+                if (isNaN(date.getTime())) {
+                    console.warn(`Invalid snapshotTime format: "${snapshot.snapshotTime}", using current time`);
+                    validSnapshotTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+                } else {
+                    validSnapshotTime = date.toISOString().slice(0, 19).replace('T', ' ');
+                }
             }
         }
     } catch (error) {
@@ -47,20 +70,30 @@ function walletTradingSnapShotToDb(snapshot: SnapShotForWalletTrading): Omit<Wal
         console.log('Using current time as fallback');
         validSnapshotTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
     }
-    
+
+    // 数值安全检查函数
+    const safeNumber = (value: number, fallback: number = 0, fieldName: string = 'unknown'): number => {
+        if (typeof value !== 'number' || isNaN(value) || !isFinite(value)) {
+            console.warn(`⚠️  无效数值在字段 ${fieldName}: ${value}, 使用默认值: ${fallback}`);
+            console.warn(`   钱包地址: ${snapshot.walletAddress}`);
+            return fallback;
+        }
+        return value;
+    };
+
     return {
         wallet_address: snapshot.walletAddress,
         snapshot_time: validSnapshotTime,
         per_tl_trading_value: JSON.stringify(snapshot.perTLTradingValue),
-        total_buy_sol_amount: snapshot.totalBuySolAmount,
-        total_buy_usd_amount: snapshot.totalBuyUsdAmount,
-        total_sell_sol_amount: snapshot.totalSellSolAmount,
-        total_sell_usd_amount: snapshot.totalSellUsdAmount,
-        buy_count: snapshot.buy_count,
-        sell_count: snapshot.sell_count,
-        sol_price: snapshot.solPrice,
-        win_count: snapshot.winCount,
-        lose_count: snapshot.loseCount,
+        total_buy_sol_amount: safeNumber(snapshot.totalBuySolAmount, 0, 'totalBuySolAmount'),
+        total_buy_usd_amount: safeNumber(snapshot.totalBuyUsdAmount, 0, 'totalBuyUsdAmount'),
+        total_sell_sol_amount: safeNumber(snapshot.totalSellSolAmount, 0, 'totalSellSolAmount'),
+        total_sell_usd_amount: safeNumber(snapshot.totalSellUsdAmount, 0, 'totalSellUsdAmount'),
+        buy_count: safeNumber(snapshot.buy_count, 0, 'buy_count'),
+        sell_count: safeNumber(snapshot.sell_count, 0, 'sell_count'),
+        sol_price: safeNumber(snapshot.solPrice, 0, 'solPrice'),
+        win_count: safeNumber(snapshot.winCount, 0, 'winCount'),
+        lose_count: safeNumber(snapshot.loseCount, 0, 'loseCount'),
         current_token_value: JSON.stringify(snapshot.currentTokenValue)
     };
 }
@@ -133,10 +166,10 @@ export async function batchCreateWalletTradingSnapshots(snapshots: SnapShotForWa
     if (snapshots.length === 0) return 0;
 
     try {
-        const values = snapshots.map(() => 
+        const values = snapshots.map(() =>
             '(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
         ).join(', ');
-        
+
         const sql = `
             INSERT INTO wallet_trading_ss (
                 wallet_address, snapshot_time, per_tl_trading_value, total_buy_sol_amount,
@@ -146,29 +179,100 @@ export async function batchCreateWalletTradingSnapshots(snapshots: SnapShotForWa
         `;
 
         const params: any[] = [];
-        snapshots.forEach(snapshot => {
-            const dbData = walletTradingSnapShotToDb(snapshot);
-            params.push(
-                dbData.wallet_address,
-                dbData.snapshot_time,
-                dbData.per_tl_trading_value,
-                dbData.total_buy_sol_amount,
-                dbData.total_buy_usd_amount,
-                dbData.total_sell_sol_amount,
-                dbData.total_sell_usd_amount,
-                dbData.buy_count,
-                dbData.sell_count,
-                dbData.sol_price,
-                dbData.win_count,
-                dbData.lose_count,
-                dbData.current_token_value
-            );
+
+        // 添加数据验证和详细日志
+        console.log(`🔍 开始验证 ${snapshots.length} 个快照数据...`);
+
+        snapshots.forEach((snapshot, index) => {
+            try {
+                const dbData = walletTradingSnapShotToDb(snapshot);
+
+                // 验证所有数字字段是否为 NaN
+                const numericFields = {
+                    total_buy_sol_amount: dbData.total_buy_sol_amount,
+                    total_buy_usd_amount: dbData.total_buy_usd_amount,
+                    total_sell_sol_amount: dbData.total_sell_sol_amount,
+                    total_sell_usd_amount: dbData.total_sell_usd_amount,
+                    buy_count: dbData.buy_count,
+                    sell_count: dbData.sell_count,
+                    sol_price: dbData.sol_price,
+                    win_count: dbData.win_count,
+                    lose_count: dbData.lose_count
+                };
+
+                // 检查每个数字字段
+                for (const [fieldName, value] of Object.entries(numericFields)) {
+                    if (isNaN(value) || !isFinite(value)) {
+                        console.error(`❌ 发现无效数据在快照 ${index}:`);
+                        console.error(`   钱包地址: ${snapshot.walletAddress}`);
+                        console.error(`   字段: ${fieldName}`);
+                        console.error(`   无效值: ${value}`);
+                        console.error(`   原始快照数据:`, JSON.stringify(snapshot, null, 2));
+                        throw new Error(`Invalid numeric value in field ${fieldName}: ${value}`);
+                    }
+                }
+
+                // 检查 JSON 字段
+                try {
+                    JSON.parse(dbData.per_tl_trading_value);
+                    JSON.parse(dbData.current_token_value);
+                } catch (jsonError) {
+                    console.error(`❌ JSON 字段解析错误在快照 ${index}:`);
+                    console.error(`   钱包地址: ${snapshot.walletAddress}`);
+                    console.error(`   JSON 错误:`, jsonError);
+                    console.error(`   per_tl_trading_value:`, dbData.per_tl_trading_value);
+                    console.error(`   current_token_value:`, dbData.current_token_value);
+                    throw jsonError;
+                }
+
+                // 如果验证通过，添加到参数数组
+                params.push(
+                    dbData.wallet_address,
+                    dbData.snapshot_time,
+                    dbData.per_tl_trading_value,
+                    dbData.total_buy_sol_amount,
+                    dbData.total_buy_usd_amount,
+                    dbData.total_sell_sol_amount,
+                    dbData.total_sell_usd_amount,
+                    dbData.buy_count,
+                    dbData.sell_count,
+                    dbData.sol_price,
+                    dbData.win_count,
+                    dbData.lose_count,
+                    dbData.current_token_value
+                );
+
+                // 每100个记录打印一次进度
+                if ((index + 1) % 100 === 0) {
+                    console.log(`✅ 已验证 ${index + 1}/${snapshots.length} 个快照`);
+                }
+
+            } catch (conversionError) {
+                console.error(`❌ 数据转换错误在快照 ${index}:`, conversionError);
+                console.error(`   原始快照数据:`, JSON.stringify(snapshot, null, 2));
+                throw conversionError;
+            }
         });
 
+        console.log(`✅ 所有 ${snapshots.length} 个快照数据验证通过，开始批量插入...`);
+
         const result = await commonQuery(sql, params);
-        return (result as any).affectedRows;
-    } catch (error) {
-        console.error("Error batch creating wallet trading snapshots:", error);
+        const affectedRows = (result as any).affectedRows;
+
+        console.log(`✅ 批量插入成功：${affectedRows} 条记录`);
+        return affectedRows;
+
+    } catch (error: unknown) {
+        console.error("❌ 批量创建钱包交易快照失败:");
+        console.error("   错误信息:", error instanceof Error ? error.message : String(error));
+        console.error("   完整错误:", error);
+
+        // 如果是 NaN 相关错误，提供更多上下文
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        if (errorMessage.includes('NaN') || errorMessage.includes('Unknown column')) {
+            console.error("🔍 这是一个 NaN 数据问题，请检查上面的详细日志来定位具体的无效数据");
+        }
+
         return 0;
     }
 }
@@ -419,7 +523,7 @@ export async function updateWalletTradingSnapshot(id: number, updateData: Partia
                 console.log('Using current time as fallback');
                 validSnapshotTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
             }
-            
+
             setClauses.push('snapshot_time = ?');
             params.push(validSnapshotTime);
         }
@@ -602,4 +706,56 @@ export async function saveWalletTradingSnapshots(snapshots: SnapShotForWalletTra
         console.error("Error saving wallet trading snapshots:", error);
         return false;
     }
+}
+
+/**
+ * 批量获取指定钱包在指定时间之前的最后一次快照
+ */
+export async function batchGetLatestWalletTradingSnapshotBeforeTime(
+    walletAddresses: string[],
+    timestamp: number
+): Promise<Map<string, SnapShotForWalletTrading>> {
+    const result = new Map<string, SnapShotForWalletTrading>();
+
+    if (walletAddresses.length === 0) {
+        return result;
+    }
+
+    try {
+        // 构建IN查询的占位符
+        const placeholders = walletAddresses.map(() => '?').join(',');
+
+        const sql = `
+            SELECT w1.* FROM wallet_trading_ss w1
+            INNER JOIN (
+                SELECT wallet_address, MAX(snapshot_time) as max_time
+                FROM wallet_trading_ss 
+                WHERE wallet_address IN (${placeholders}) 
+                  AND snapshot_time < ?
+                GROUP BY wallet_address
+            ) w2 ON w1.wallet_address = w2.wallet_address 
+                 AND w1.snapshot_time = w2.max_time
+            ORDER BY w1.wallet_address, w1.id DESC
+        `;
+
+        const params = [...walletAddresses, timestamp];
+        const queryResult = await commonQuery<WalletTradingSnapshotDB>(sql, params);
+
+        // 将结果转换为Map，处理同一钱包多条记录的情况（取最新的一条）
+        const processedWallets = new Set<string>();
+        for (const row of queryResult) {
+            if (!processedWallets.has(row.wallet_address)) {
+                const snapshot = dbToWalletTradingSnapShot(row);
+                result.set(row.wallet_address, snapshot);
+                processedWallets.add(row.wallet_address);
+            }
+        }
+
+        console.log(`📊 批量查询 ${walletAddresses.length} 个钱包，找到 ${result.size} 个历史快照`);
+
+    } catch (error) {
+        console.error("Error batch getting latest wallet trading snapshots before time:", error);
+    }
+
+    return result;
 }

@@ -1,10 +1,15 @@
 import { VersionedBlockResponse } from "npm:@solana/web3.js@1.98.2";
 import { exportDexparserInstance } from "../collection/dex-parser.ts";
 import { MathUtil } from "../utils/MathUtil.ts";
-import { SOLANA_DEX_ADDRESS_TO_NAME } from "../constant/index.ts";
+import { SOLANA_DEX_ADDRESS_TO_NAME, SOLANA_DEX_BASE_TOKEN } from "../constant/index.ts";
 import { TokenPriceService } from "./TokenPriceService.ts";
 import { ParseResult } from "../type/index.ts";
 import clickhouseClient from "../../config/clickhouse.ts";
+import { ESwapTradeType, SwapTransactionToken, TokenSwapFilterData } from "../type/swap.ts";
+import { BLACK_LIST_TOKEN } from "../constant/address_data/black_list.ts";
+import { WALLET_BLACKLIST } from "../constant/address_data/wallet_black_list.ts";
+import { MEVBOT_ADDRESSES } from "../constant/address_data/mev_list.ts";
+import { SNAP_SHOT_CONFIG, SOLANA_DEX_STABLE_TOKEN } from "../constant/config.ts";
 
 interface SwapTransaction {
   txHash: string;
@@ -26,38 +31,37 @@ export class SolanaBlockDataHandler {
     blockData: VersionedBlockResponse,
     blockNumber: number,
   ) {
-    // try {
-    //
-    // } catch (e) {
-    //   console.log(`SolanaBlockDataHandler.handleBlockData error,blockNumber:${blockNumber}`, e); //non
-    // }
-    const parseResult = await exportDexparserInstance.parseBlockData(
+    try {
+      const parseResult = await exportDexparserInstance.parseBlockData(
         blockData,
         blockNumber,
-    );
-    const fileteTransactions = parseResult.filter((tx) =>
+      );
+      const fileteTransactions = parseResult.filter((tx) =>
         tx.result?.trades?.length > 0 && tx.trades.length > 0
-    );
-    const swapTransactionArray = [];
-    for (let index = 0; index < fileteTransactions.length; index++) {
-      const tx = fileteTransactions[index];
-      for (let index = 0; index < tx.trades.length; index++) {
-        try {
-          const swapTransaction = await SolanaBlockDataHandler.convertData(
+      );
+      const swapTransactionArray = [];
+      for (let index = 0; index < fileteTransactions.length; index++) {
+        const tx = fileteTransactions[index];
+        for (let index = 0; index < tx.trades.length; index++) {
+          try {
+            const swapTransaction = await SolanaBlockDataHandler.convertData(
               tx,
               index,
-          );
-          if (swapTransaction) {
-            swapTransactionArray.push(swapTransaction);
+            );
+            if (swapTransaction) {
+              swapTransactionArray.push(swapTransaction);
+            }
+          } catch (error) {
+            console.log("SolanaBlockDataHandler.convertData error", error);
           }
-        } catch (error) {
-          console.log("SolanaBlockDataHandler.convertData error", error);
         }
       }
-    }
-    if (swapTransactionArray.length > 0) {
-      await this.insertToTokenTable(swapTransactionArray);
-      await this.insertToWalletTable(swapTransactionArray);
+      if (swapTransactionArray.length > 0) {
+        await this.insertToTokenTable(swapTransactionArray);
+        await this.insertToWalletTable(swapTransactionArray);
+      }
+    } catch (e) {
+      console.log(`SolanaBlockDataHandler.handleBlockData error,blockNumber:${blockNumber}`, e); //non
     }
   }
   static async convertData(
@@ -175,5 +179,106 @@ export class SolanaBlockDataHandler {
 
     console.log(`✅ 插入 ${values.length} 条记录到 solana_swap_transactions_token`);
   }
+
+  // 读取单位时间后的x条数据
+  static async getXDaysData(timestamp: number, limit = 0): Promise<SwapTransactionToken[]> {
+    const data = await clickhouseClient.query({
+      query: `SELECT * FROM solana_swap_transactions_token WHERE transaction_time > ${timestamp} ORDER BY transaction_time asc ${limit > 0 ? `LIMIT ${limit}` : ''} `,
+      format: 'JSONEachRow'
+    });
+    const rows = await data.json();
+    return rows as SwapTransactionToken[];
+  }
+
+
+  static async getXDaysDataByTimestamp(startTimestamp: number, endTimestamp: number, pageNum: number, pageSize: number): Promise<SwapTransactionToken[]> {
+    const data = await clickhouseClient.query({
+      query: `SELECT * FROM solana_swap_transactions_token WHERE transaction_time > ${startTimestamp} AND transaction_time < ${endTimestamp} ORDER BY transaction_time DESC LIMIT ${pageNum * pageSize},${pageSize}`,
+      format: 'JSONEachRow'
+    });
+
+    const rows = await data.json();
+    return rows as SwapTransactionToken[];
+  }
+
+  /**
+   * 基于区块高度范围获取交易数据
+   * @param startBlockHeight 起始区块高度
+   * @param endBlockHeight 结束区块高度
+   * @returns Promise<SwapTransactionToken[]>
+   */
+  static async getDataByBlockHeightRange(startBlockHeight: number, endBlockHeight: number): Promise<SwapTransactionToken[]> {
+    const data = await clickhouseClient.query({
+      query: `SELECT * FROM solana_swap_transactions_token WHERE block_height >= ${startBlockHeight} AND block_height <= ${endBlockHeight} ORDER BY block_height ASC`,
+      format: 'JSONEachRow'
+    });
+
+    const rows = await data.json();
+    return rows as SwapTransactionToken[];
+  }
+
+  static filterTokenData(data: SwapTransactionToken[]): TokenSwapFilterData[] {
+
+    const result: TokenSwapFilterData[] = [];
+
+    for (const transaction of data) {
+      if (BLACK_LIST_TOKEN.includes(transaction.token_address) ||
+        BLACK_LIST_TOKEN.includes(transaction.quote_address)) {
+        continue;
+      }
+      if (WALLET_BLACKLIST.includes(transaction.wallet_address)) {
+        continue;
+      }
+
+      if (MEVBOT_ADDRESSES.includes(transaction.wallet_address)) {
+        continue;
+      }
+
+      const LOWER_DEX_BASE_TOKEN = SOLANA_DEX_BASE_TOKEN.map(token => token.toLowerCase());
+
+      const tokenIsBase = LOWER_DEX_BASE_TOKEN.includes(transaction.token_address.toLowerCase());
+      const quoteIsBase = LOWER_DEX_BASE_TOKEN.includes(transaction.quote_address.toLowerCase());
+
+      if (!tokenIsBase && !quoteIsBase) {
+        continue;
+      }
+
+      if (tokenIsBase && quoteIsBase) {
+        continue;
+      }
+
+      const calculatedUsdPrice = transaction.usd_price;
+      const calculatedUsdAmount = transaction.usd_amount;
+
+
+      if (calculatedUsdAmount < SNAP_SHOT_CONFIG.MIN_TRANSACTION_AMOUNT) {
+        continue;
+      }
+
+
+
+      const filteredData: TokenSwapFilterData = {
+        userAddress: transaction.wallet_address,
+        poolAddress: "",
+        txHash: transaction.tx_hash,
+        isBuy: transaction.trade_type === ESwapTradeType.BUY,
+        blockHeight: 0,
+        tokenSymbol: transaction.token_symbol,
+        tokenAddress: transaction.token_address,
+        quoteSymbol: transaction.quote_symbol,
+        quoteAddress: transaction.quote_address,
+        quotePrice: transaction.quote_price,
+        usdPrice: calculatedUsdPrice,
+        usdAmount: calculatedUsdAmount,
+        transactionTime: transaction.transaction_time,
+        tokenAmount: transaction.token_amount,
+        quoteAmount: transaction.quote_amount,
+      };
+
+      result.push(filteredData);
+    }
+
+    return result;
+  };
 
 }

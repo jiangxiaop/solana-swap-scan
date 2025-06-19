@@ -1,0 +1,53 @@
+[
+    {
+        "userAddress": "CkUZV387xnoGpF7wC2moMa6mPmAgCvTT4pWgzq4M9fCD",
+        "poolAddress": "",
+        "txHash": "4kH7i5SqzesdajRB7myZLGmtTbQeVRugYGPzLnqrXUd6jBLyRsrEvdq7yC3qxz8CAUT1P8HUamYYnXWi8fDASEAs",
+        "isBuy": false,
+        "blockHeight": 0,
+        "tokenSymbol": "W",
+        "tokenAddress": "99nDCQLF2i9YHapeZu5ytkZ8wbSHD52pBaeURZhMpump",
+        "quoteSymbol": "WSOL",
+        "quoteAddress": "So11111111111111111111111111111111111111112",
+        "quotePrice": 4.9e-7,
+        "usdPrice": 0.00007425,
+        "usdAmount": 32.37121846,
+        "transactionTime": "1750075971",
+        "tokenAmount": 428815.723744,
+        "quoteAmount": 0.213615009
+    },
+    {
+        "userAddress": "CkUZV387xnoGpF7wC2moMa6mPmAgCvTT4pWgzq4M9fCD",
+        "poolAddress": "",
+        "txHash": "52qs7fsZSC6a43yVZ1iK1vnDNKwbSudnrY1tqgQVJfcqwbBX6Xb1jjHCepQSxQ8aWNKczJmEpZS5DArCSnbZtQyY",
+        "isBuy": false,
+        "blockHeight": 0,
+        "tokenSymbol": "W",
+        "tokenAddress": "99nDCQLF2i9YHapeZu5ytkZ8wbSHD52pBaeURZhMpump",
+        "quoteSymbol": "WSOL",
+        "quoteAddress": "So11111111111111111111111111111111111111112",
+        "quotePrice": 5e-7,
+        "usdPrice": 0.00007577,
+        "usdAmount": 33.08210775,
+        "transactionTime": "1750075971",
+        "tokenAmount": 428815.723744,
+        "quoteAmount": 0.218306109
+    },
+    {
+        "userAddress": "CkUZV387xnoGpF7wC2moMa6mPmAgCvTT4pWgzq4M9fCD",
+        "poolAddress": "",
+        "txHash": "59ZkWrpkAc4hH94xUR7Kq4Z7QhEWvBNAdy8jRSmZfzYaKkWChbRQXDEdXp2G86HXYZw7wYqBAu3PT6uHFh6ggja2",
+        "isBuy": false,
+        "blockHeight": 0,
+        "tokenSymbol": "W",
+        "tokenAddress": "99nDCQLF2i9YHapeZu5ytkZ8wbSHD52pBaeURZhMpump",
+        "quoteSymbol": "WSOL",
+        "quoteAddress": "So11111111111111111111111111111111111111112",
+        "quotePrice": 5e-7,
+        "usdPrice": 0.00007577,
+        "usdAmount": 32.79496931,
+        "transactionTime": "1750075971",
+        "tokenAmount": 428815.723744,
+        "quoteAmount": 0.216411306
+    }
+]

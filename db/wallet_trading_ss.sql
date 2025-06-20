@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS wallet_trading_ss (
     INDEX idx_win_lose (win_count, lose_count)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='钱包交易快照表';
 
+create index idx_wallet_address_snapshot_time on wallet_trading_ss (wallet_address, snapshot_time);
+
 -- 添加字段注释说明
 -- wallet_address: 钱包地址
 -- snapshot_time: 快照时间
@@ -71,3 +73,28 @@ CREATE TABLE IF NOT EXISTS wallet_trading_ss (
 -- SELECT wallet_address, current_token_value
 -- FROM wallet_trading_ss 
 -- WHERE JSON_CONTAINS(current_token_value, JSON_OBJECT('tokenAddress', 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'));
+
+
+-- 获取过去3天内符合条件的活跃钱包
+-- 使用LEFT JOIN避免排序规则冲突
+SELECT 
+    wallet_address,
+    SUM(buy_count + w.sell_count) as total_transactions,
+    SUM(w.buy_count) as total_buy_count,
+    COUNT(DISTINCT JSON_UNQUOTE(JSON_EXTRACT(token.value, '$.tokenAddress'))) as unique_tokens
+FROM wallet_trading_ss w
+CROSS JOIN JSON_TABLE(w.current_token_value, '$[*]' COLUMNS (
+    value JSON PATH '$'
+)) AS token
+LEFT JOIN smart_money_address sma ON w.wallet_address = sma.address COLLATE utf8mb4_unicode_ci
+WHERE w.snapshot_time >= '2025-06-1 00:00:00'
+  AND sma.address IS NULL  -- 排除已存在的聪明钱地址
+GROUP BY w.wallet_address
+HAVING total_transactions >= 1
+   AND total_buy_count >= 1
+   AND unique_tokens >= 1
+ORDER BY total_transactions DESC;
+
+
+
+select * from wallet_trading_ss where snapshot_time >= '2025-06-18 00:00:00' and snapshot_time <= '2025-06-19 00:00:00' and wallet_address = '88FTcA1qojpqX6tmSDMB8XbErQUue938T288zWK3GAAv';

@@ -577,20 +577,20 @@ export const snapshotWalletTradingByTxData = async (txs: TokenSwapFilterData[]):
         }
 
         // 每次交易后立即检查是否需要清仓
-        if (tokenValue.totalBuyAmount > 0) {
-            const sellRatio = tokenValue.totalSellAmount / tokenValue.totalBuyAmount;
+            if (tokenValue.totalBuyAmount > 0) {
+                const sellRatio = tokenValue.totalSellAmount / tokenValue.totalBuyAmount;
 
             // 卖出比例超过99%，视为清仓
-            if (sellRatio > 0.99) {
-                // 用户已清仓，计算盈亏
-                const avgBuyPrice = tokenValue.tokenWeightBuyUsdPrice;
-                const avgSellPrice = tokenValue.tokenWeightSellUsdPrice;
+                if (sellRatio > 0.99) {
+                    // 用户已清仓，计算盈亏
+                    const avgBuyPrice = tokenValue.tokenWeightBuyUsdPrice;
+                    const avgSellPrice = tokenValue.tokenWeightSellUsdPrice;
 
-                if (avgSellPrice > avgBuyPrice) {
-                    walletTrading.winCount += 1;
-                } else if (avgSellPrice < avgBuyPrice) {
-                    walletTrading.loseCount += 1;
-                }
+                    if (avgSellPrice > avgBuyPrice) {
+                        walletTrading.winCount += 1;
+                    } else if (avgSellPrice < avgBuyPrice) {
+                        walletTrading.loseCount += 1;
+                    }
 
                 // 保存清仓历史记录
                 const pnlUsd = (tokenValue.tokenWeightSellUsdPrice - tokenValue.tokenWeightBuyUsdPrice) * tokenValue.totalSellAmount;

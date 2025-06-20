@@ -118,7 +118,7 @@ const SnapshotForTokenAndWalletTrading = async (startBlockHeight: number, endBlo
             // 直接获取该区块窗口范围内的所有数据，取消分页
             const dataProcessStartTime = Date.now();
             const { tokenSnapShotData, walletSnapShotData } = await getTokenAndWalletTradingDataByBlockRange(
-                window.start,
+                    window.start,
                 window.end
             );
             const dataProcessEndTime = Date.now();

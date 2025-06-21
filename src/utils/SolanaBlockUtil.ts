@@ -54,5 +54,7 @@ export class SolanaBlockUtil {
     return { data: null, skip: false };
   };
 }
-
-console.log(await SolanaBlockUtil.getLatestSlot(),"     ",await SolanaBlockUtil.getFirstAvailableBlock());
+// const latestSlot = await SolanaBlockUtil.getLatestSlot();
+// console.log(latestSlot);
+// const data=await SolanaBlockUtil.getBlockData(latestSlot,0);
+// console.log(data);

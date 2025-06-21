@@ -25,7 +25,7 @@ export class SolanaBlockScanner {
                     await redisClient.set(REDIS_KEY_LAST_BLOCK, String(currentHeight));
                 }
 
-                const maxAvailableSlot = latestHeight - 10;
+                const maxAvailableSlot = latestHeight;
 
                 const slots = Array.from({ length: this.batchSize }, (_, i) => currentHeight + i)
                     .filter(slot => slot <= maxAvailableSlot);

@@ -2,14 +2,22 @@
 import { Connection } from "@solana/web3.js";
 
 const rpcArray = [
-    "https://quaint-stylish-sheet.solana-mainnet.quiknode.pro/d8713d2a2f0cd3e3c83b07fee686c373d9288a9f/",
-    "https://tiniest-quick-market.solana-mainnet.quiknode.pro/951dec21bfb308079eaae30b31e289cf19a2a9d0/",
-    "https://virulent-multi-sea.solana-mainnet.quiknode.pro/734cd703cef2a3fdc72ab8f9d807796f01508502/"
+    "https://solana-mainnet.core.chainstack.com/18462a49342e3ef0f64835c002a078a5",
+    "https://solana-mainnet.core.chainstack.com/18462a49342e3ef0f64835c002a078a5",
+    "https://solana-mainnet.core.chainstack.com/18462a49342e3ef0f64835c002a078a5",
+    // "https://solana-mainnet.core.chainstack.com/18462a49342e3ef0f64835c002a078a5",
+    // "https://solana-mainnet.core.chainstack.com/18462a49342e3ef0f64835c002a078a5",
+    // "https://solana-mainnet.core.chainstack.com/18462a49342e3ef0f64835c002a078a5",
+    // "https://solana-mainnet.core.chainstack.com/18462a49342e3ef0f64835c002a078a5",
+    // "https://solana-mainnet.core.chainstack.com/18462a49342e3ef0f64835c002a078a5",
+    // "https://solana-mainnet.core.chainstack.com/18462a49342e3ef0f64835c002a078a5",
+    // "https://solana-mainnet.core.chainstack.com/18462a49342e3ef0f64835c002a078a5",
 ];
 
 export class SolanaConnectionPool {
     private static connections: Connection[] = rpcArray.map(
-        (rpc) => new Connection(rpc)
+        (rpc) => new Connection(rpc,{
+            commitment: "confirmed",})
     );
 
     /**

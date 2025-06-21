@@ -24,6 +24,9 @@ interface SwapTransaction {
   quotePrice: string;
   usdPrice: string;
   usdAmount: string;
+  tradeType: string;
+  poolAddress: string;
+  blockHeight: number;
 }
 
 export class SolanaBlockDataHandler {
@@ -31,42 +34,45 @@ export class SolanaBlockDataHandler {
     blockData: VersionedBlockResponse,
     blockNumber: number,
   ) {
-    try {
-      const parseResult = await exportDexparserInstance.parseBlockData(
+    // try {
+    //
+    // } catch (e) {
+    //   console.log(`SolanaBlockDataHandler.handleBlockData error,blockNumber:${blockNumber}`, e); //non
+    // }
+    const parseResult = await exportDexparserInstance.parseBlockData(
         blockData,
         blockNumber,
-      );
-      const fileteTransactions = parseResult.filter((tx) =>
+    );
+    const fileteTransactions = parseResult.filter((tx) =>
         tx.result?.trades?.length > 0 && tx.trades.length > 0
-      );
-      const swapTransactionArray = [];
-      for (let index = 0; index < fileteTransactions.length; index++) {
-        const tx = fileteTransactions[index];
-        for (let index = 0; index < tx.trades.length; index++) {
-          try {
-            const swapTransaction = await SolanaBlockDataHandler.convertData(
+    );
+    const swapTransactionArray = [];
+    for (let index = 0; index < fileteTransactions.length; index++) {
+      const tx = fileteTransactions[index];
+      for (let index = 0; index < tx.trades.length; index++) {
+        try {
+          const swapTransaction = await SolanaBlockDataHandler.convertData(
               tx,
               index,
-            );
-            if (swapTransaction) {
-              swapTransactionArray.push(swapTransaction);
-            }
-          } catch (error) {
-            console.log("SolanaBlockDataHandler.convertData error", error);
+              blockNumber
+          );
+          if (swapTransaction) {
+            swapTransactionArray.push(swapTransaction);
           }
+        } catch (error) {
+          console.log("SolanaBlockDataHandler.convertData error", error);
         }
       }
-      if (swapTransactionArray.length > 0) {
-        await this.insertToTokenTable(swapTransactionArray);
-        await this.insertToWalletTable(swapTransactionArray);
-      }
-    } catch (e) {
-      console.log(`SolanaBlockDataHandler.handleBlockData error,blockNumber:${blockNumber}`, e); //non
+    }
+    if (swapTransactionArray.length > 0) {
+      await this.insertToTokenTable(swapTransactionArray);
+      await this.insertToWalletTable(swapTransactionArray);
     }
   }
   static async convertData(
     parseResult: ParseResult,
     index: number,
+    blockNumber: number
   ): Promise<SwapTransaction | null> {
     const tradeDetail = parseResult.result.trades[index];
     let tradeType = parseResult.trades[index].type;
@@ -80,6 +86,7 @@ export class SolanaBlockDataHandler {
     let quoteAmount;
     let quoteAddress;
     let quotePrice;
+    let poolAddress=tradeDetail.pool_address;
     if (tradeType === "BUY") {
       tokenAmount = tradeDetail.token_out_amount;
       tokenSymbol = tradeDetail.token_out_symbol;
@@ -124,6 +131,9 @@ export class SolanaBlockDataHandler {
       quotePrice,
       usdPrice,
       usdAmount,
+      tradeType,
+      poolAddress,
+      blockHeight: blockNumber,
     };
     return data;
   }
@@ -143,6 +153,9 @@ export class SolanaBlockDataHandler {
       quote_price: parseFloat(tx.quotePrice),
       usd_price: parseFloat(tx.usdPrice),
       usd_amount: parseFloat(tx.usdAmount),
+      trade_type: tx.tradeType,
+      block_height: tx.blockHeight,
+      pool_address: tx.poolAddress
     }));
 
     await clickhouseClient.insert({
@@ -169,6 +182,9 @@ export class SolanaBlockDataHandler {
       quote_price: parseFloat(tx.quotePrice),
       usd_price: parseFloat(tx.usdPrice),
       usd_amount: parseFloat(tx.usdAmount),
+      trade_type: tx.tradeType,
+      block_height: tx.blockHeight,
+      pool_address: tx.poolAddress
     }));
 
     await clickhouseClient.insert({

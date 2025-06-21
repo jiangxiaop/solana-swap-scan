@@ -27,7 +27,7 @@ const getBlockValue = async (blockNumber: number) => {
 Deno.test("测试获取交易信息", async () => {
     const startTime = Date.now();
     const parser = new DexParser();
-    const blockNumber = 344756476;
+    const blockNumber = 347797409;
     const transactions = await parser.parsePerBlock(blockNumber);
 
     const endTime = Date.now();

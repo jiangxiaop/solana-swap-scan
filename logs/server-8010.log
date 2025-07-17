@@ -1,0 +1,42 @@
+🚀 Starting server on port 8010
+Listening on http://0.0.0.0:8010/ (http://localhost:8010/)
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8010] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 1 ms
+[Port 8010] server total use, cost: 1 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8010] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8010] server total use, cost: 1 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8010] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8010] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8010] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8010] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8010] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8010] server total use, cost: 0 ms

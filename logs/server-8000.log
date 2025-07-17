@@ -1,0 +1,67 @@
+🚀 Starting server on port 8000
+Listening on http://0.0.0.0:8000/ (http://localhost:8000/)
+undefined
+[Port 8000] Error processing request: data.map is not a function
+undefined
+[Port 8000] Error processing request: data.map is not a function
+[Port 8000] Error processing request: Unexpected end of JSON input
+[Port 8000] Error processing request: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+undefined
+[Port 8000] Error processing request: data.map is not a function
+1
+parse block 12345,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8000] server total use, cost: 0 ms
+[Port 8000] Error processing request: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+1
+parse block 12345,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8000] server total use, cost: 0 ms
+1
+parse block 12345,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8000] server total use, cost: 0 ms
+1
+parse block 12345,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8000] server total use, cost: 0 ms
+1
+parse block 12345,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8000] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8000] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8000] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8000] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8000] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8000] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8000] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8000] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8000] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8000] server total use, cost: 0 ms

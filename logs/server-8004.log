@@ -1,0 +1,54 @@
+🚀 Starting server on port 8004
+Listening on http://0.0.0.0:8004/ (http://localhost:8004/)
+1
+parse block 12345,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8004] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8004] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8004] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8004] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 1 ms
+[Port 8004] server total use, cost: 1 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8004] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8004] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8004] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8004] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 1 ms
+[Port 8004] server total use, cost: 1 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8004] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8004] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8004] server total use, cost: 0 ms

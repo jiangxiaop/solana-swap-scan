@@ -21,8 +21,25 @@ export class MathUtil {
     // 除法（自动处理除数为零）
     static divide(a: number | string, b: number | string): string {
         const divisor = new Decimal(b);
-        if (divisor.isZero()) throw new Error("Cannot divide by zero");
+        if (divisor.isZero()) {
+            console.warn(`Division by zero attempted: ${a} / ${b}, returning "0"`);
+            return "0";
+        }
         return new Decimal(a).dividedBy(divisor).toString();
+    }
+
+    // 安全除法，返回默认值而不是抛出错误
+    static safeDivide(a: number | string, b: number | string, defaultValue = "0"): string {
+        try {
+            const divisor = new Decimal(b);
+            if (divisor.isZero()) {
+                return defaultValue;
+            }
+            return new Decimal(a).dividedBy(divisor).toString();
+        } catch (error) {
+            console.warn(`Safe division error: ${a} / ${b}, returning default value: ${defaultValue}`);
+            return defaultValue;
+        }
     }
 
     // 幂运算：10 的 x 次方

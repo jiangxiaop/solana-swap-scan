@@ -1,0 +1,30 @@
+🚀 Starting server on port 8025
+Listening on http://0.0.0.0:8025/ (http://localhost:8025/)
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8025] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8025] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8025] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8025] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8025] server total use, cost: 1 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8025] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8025] server total use, cost: 0 ms

@@ -1,0 +1,26 @@
+🚀 Starting server on port 8030
+Listening on http://0.0.0.0:8030/ (http://localhost:8030/)
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8030] server total use, cost: 1 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8030] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8030] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8030] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8030] server total use, cost: 0 ms
+1
+parse block 123,cost:0 ms
+HIGH PERFORMANCE: parse 1 blocks, cost: 0 ms
+[Port 8030] server total use, cost: 0 ms

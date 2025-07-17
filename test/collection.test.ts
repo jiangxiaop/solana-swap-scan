@@ -30,6 +30,9 @@ Deno.test("测试获取交易信息", async () => {
     const blockNumber = 347797409;
     const transactions = await parser.parsePerBlock(blockNumber);
 
+    // console.log(transactions.length);
+    
+
     const endTime = Date.now();
     console.log(`解析时间: ${endTime - startTime}ms`);
 

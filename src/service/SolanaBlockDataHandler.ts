@@ -1,4 +1,4 @@
-import { VersionedBlockResponse } from "npm:@solana/web3.js@1.98.2";
+import { VersionedBlockResponse } from "@solana/web3.js";
 import { exportDexparserInstance } from "../collection/dex-parser.ts";
 import { MathUtil } from "../utils/MathUtil.ts";
 import { SOLANA_DEX_ADDRESS_TO_NAME, SOLANA_DEX_BASE_TOKEN } from "../constant/index.ts";
@@ -30,31 +30,62 @@ interface SwapTransaction {
 }
 
 export class SolanaBlockDataHandler {
+
+
+  public static async handleMultiBlockData(
+    data: {
+      blockdata: VersionedBlockResponse,
+      blocknum: number,
+    }[]
+  ) {
+
+    const start = Date.now();
+
+    const swapTransactionArray: SwapTransaction[] = [];
+
+    const parseResult = await Promise.all(data.map(async (block) => {
+      const result = await this.handleBlockData(block.blockdata, block.blocknum);
+      swapTransactionArray.push(...result);
+      return result;
+    }));
+
+    // const parseResult = data.map((block) => {
+    //   return exportDexparserInstance.parseBlockData(
+    //     block.blockData,
+    //     block.blockNumber,
+    //   );
+    // });
+    await this.insertToHistoryTable(swapTransactionArray);
+    console.log(`parse block ${data.length},cost:${Date.now() - start} ms`);
+
+    return parseResult;
+  }
+
+
   public static async handleBlockData(
     blockData: VersionedBlockResponse,
     blockNumber: number,
   ) {
-    // try {
-    //
-    // } catch (e) {
-    //   console.log(`SolanaBlockDataHandler.handleBlockData error,blockNumber:${blockNumber}`, e); //non
-    // }
-    const parseResult = await exportDexparserInstance.parseBlockData(
-        blockData,
-        blockNumber,
+
+    const parseResult = exportDexparserInstance.parseBlockData(
+      blockData,
+      blockNumber,
     );
+
+
     const fileteTransactions = parseResult.filter((tx) =>
-        tx.result?.trades?.length > 0 && tx.trades.length > 0
+      tx.result?.trades?.length > 0
     );
-    const swapTransactionArray = [];
+
+    const swapTransactionArray: SwapTransaction[] = [];
     for (let index = 0; index < fileteTransactions.length; index++) {
       const tx = fileteTransactions[index];
       for (let index = 0; index < tx.trades.length; index++) {
         try {
           const swapTransaction = await SolanaBlockDataHandler.convertData(
-              tx,
-              index,
-              blockNumber
+            tx,
+            index,
+            blockNumber
           );
           if (swapTransaction) {
             swapTransactionArray.push(swapTransaction);
@@ -64,10 +95,14 @@ export class SolanaBlockDataHandler {
         }
       }
     }
+
     if (swapTransactionArray.length > 0) {
-      await this.insertToTokenTable(swapTransactionArray);
-      await this.insertToWalletTable(swapTransactionArray);
+      // await this.insertToTokenTable(swapTransactionArray);
+      // await this.insertToWalletTable(swapTransactionArray);
+      // await this.insertToHistoryTable(swapTransactionArray);
     }
+
+    return swapTransactionArray
   }
   static async convertData(
     parseResult: ParseResult,
@@ -76,6 +111,7 @@ export class SolanaBlockDataHandler {
   ): Promise<SwapTransaction | null> {
     const tradeDetail = parseResult.result.trades[index];
     let tradeType = parseResult.trades[index].type;
+
     const txHash = tradeDetail.transaction_signature;
     const transactionTime = tradeDetail.block_time;
     const walletAddress = tradeDetail.user_address;
@@ -86,7 +122,7 @@ export class SolanaBlockDataHandler {
     let quoteAmount;
     let quoteAddress;
     let quotePrice;
-    let poolAddress=tradeDetail.pool_address;
+    let poolAddress = tradeDetail.pool_address;
     if (tradeType === "BUY") {
       tokenAmount = tradeDetail.token_out_amount;
       tokenSymbol = tradeDetail.token_out_symbol;
@@ -105,15 +141,19 @@ export class SolanaBlockDataHandler {
       quotePrice = MathUtil.divide(quoteAmount, tokenAmount); //quoteAmount / tokenAmount;
     }
     quotePrice = MathUtil.toFixed(quotePrice);
-    quoteSymbol = SOLANA_DEX_ADDRESS_TO_NAME[quoteAddress];
-    if (!quoteSymbol) {
-      console.log(`quoteSymbol not support ${quoteAddress} `);
+    
+    // 验证 quoteAddress 是否有效
+    if (!quoteAddress || typeof quoteAddress !== 'string') {
+      console.log(`Invalid quoteAddress: ${quoteAddress}, skipping transaction ${txHash}`);
       return null;
     }
-    const quoteTokenUSDPrice = await TokenPriceService.getPrice(
-      quoteSymbol,
-      "USDT",
-    );
+    
+    quoteSymbol = SOLANA_DEX_ADDRESS_TO_NAME[quoteAddress];
+    if (!quoteSymbol) {
+      console.log(`quoteSymbol not support ${quoteAddress}, skipping transaction ${txHash}`);
+      return null;
+    }
+    const quoteTokenUSDPrice = 1
     let usdPrice = MathUtil.multiply(quotePrice, quoteTokenUSDPrice); //quotePrice * quoteTokenUSDPrice;
     usdPrice = MathUtil.toFixed(usdPrice);
     let usdAmount = MathUtil.multiply(quoteTokenUSDPrice, quoteAmount); //quoteAmount * usdPrice;
@@ -195,6 +235,36 @@ export class SolanaBlockDataHandler {
 
     console.log(`✅ 插入 ${values.length} 条记录到 solana_swap_transactions_token`);
   }
+
+
+  static async insertToHistoryTable(rows: SwapTransaction[]) {
+    const values = rows.map((tx) => ({
+      tx_hash: tx.txHash,
+      trade_type: tx.tradeType,
+      block_height: tx.blockHeight,
+      pool_address: tx.poolAddress,
+      transaction_time: tx.transactionTime,
+      wallet_address: tx.walletAddress,
+      token_amount: tx.tokenAmount,
+      token_symbol: tx.tokenSymbol,
+      token_address: tx.tokenAddress,
+      quote_symbol: tx.quoteSymbol,
+      quote_amount: tx.quoteAmount,
+      quote_address: tx.quoteAddress,
+      quote_price: parseFloat(tx.quotePrice),
+      usd_price: parseFloat(tx.usdPrice),
+      usd_amount: parseFloat(tx.usdAmount),
+    }));
+
+    await clickhouseClient.insert({
+      table: "solana_history_data",
+      values,
+      format: "JSONEachRow",
+    });
+
+    console.log(`✅ 插入 ${values.length} 条记录到 solana_history_data`);
+  }
+
 
   // 读取单位时间后的x条数据
   static async getXDaysData(timestamp: number, limit = 0): Promise<SwapTransactionToken[]> {

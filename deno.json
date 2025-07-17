@@ -7,8 +7,9 @@
     "DataSnapshot": "deno run --allow-env --allow-read --allow-net --no-check --allow-ffi src/cron/snapshot/index.ts"
   },
   "imports": {
+    "@metaplex-foundation/mpl-token-metadata": "npm:@metaplex-foundation/mpl-token-metadata@^3.4.0",
     "@shyft-to/solana-transaction-parser": "npm:@shyft-to/solana-transaction-parser@^2.0.1",
-    "@solana/web3.js": "npm:@solana/web3.js@^1.98.2",
+    "@solana/web3.js": "npm:@solana/web3.js@1.98.2",
     "@std/assert": "jsr:@std/assert@1",
     "@types/node": "npm:@types/node@^22.15.23",
     "axios": "npm:axios@^1.9.0",

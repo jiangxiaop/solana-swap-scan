@@ -3,11 +3,12 @@ import {
     fetchDigitalAsset,
     mplTokenMetadata,
     type DigitalAsset,
-} from "npm:@metaplex-foundation/mpl-token-metadata";
+} from "@metaplex-foundation/mpl-token-metadata";
 
-import { Connection,PublicKey } from "npm:@solana/web3.js";
+import { Connection, PublicKey } from "npm:@solana/web3.js";
 
 import { createUmi } from "npm:@metaplex-foundation/umi-bundle-defaults";
+import { PublicKey as UmiPublicKey } from "npm:@metaplex-foundation/umi";
 import solana_connect_instance from "../lib/solana.ts";
 
 
@@ -38,7 +39,7 @@ export class FetchTokenMetadataService {
         let asset: DigitalAsset | null = null;
 
         try {
-            asset = await fetchDigitalAsset(this.umi, mintPublicKey);
+            asset = await fetchDigitalAsset(this.umi, mintPublicKey as unknown as UmiPublicKey);
         } catch (err) {
             // console.warn("fetchDigitalAsset failed:", err);
         }

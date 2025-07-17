@@ -37,9 +37,9 @@ import { getBlockValue, getProgramName } from '../lib/utils.ts';
 import { ResSwapStruct } from "../type/filter_struct.ts";
 import { PumpswapParser } from "./parser/pumpswap/parser-pumpswap.ts";
 import { PumpswapLiquidityParser } from "./parser/pumpfun/parser-pumpswap-liquidity.ts";
-import {getTokenInfoUseCache} from "../service/TokenInfoService.ts";
+import { getTokenInfoUseCache } from "../service/TokenInfoService.ts";
 import redisClient from "../../config/redis.ts";
-import {VersionedBlockResponse} from "npm:@solana/web3.js@1.98.2";
+import { VersionedBlockResponse } from "npm:@solana/web3.js@1.98.2";
 
 /**
  * Interface for DEX trade parsers
@@ -309,7 +309,7 @@ export class DexParser {
    * @param tradeinfo TradeInfo
    * @returns ResSwapStruct
    */
-  public async formatTradeSwap(tradeinfo: TradeInfo): Promise<ResSwapStruct> {
+  public formatTradeSwap(tradeinfo: TradeInfo): ResSwapStruct {
     // 解析 idx 获取 id，格式通常是 "outerIndex-innerIndex"
     const parseId = (idx: string): number => {
       const parts = idx.split('-');
@@ -331,11 +331,11 @@ export class DexParser {
       }
     };
 
-    const getTokenSymbol = async (mint: string): Promise<string> => {
+    const getTokenSymbol = (mint: string): string => {
       // 这里可以添加代币符号映射逻辑
       // 或者从token metadata服务获取
-      const tokenInfo = await getTokenInfoUseCache(mint);
-      return tokenInfo?.symbol || '';
+      // const tokenInfo = await getTokenInfoUseCache(mint);
+      return '';
     };
 
     // 计算路由数量
@@ -383,8 +383,8 @@ export class DexParser {
       token_out_amount: tradeinfo.outputToken.amount,
       token_in_amount_raw: parseInt(tradeinfo.inputToken.amountRaw),
       token_out_amount_raw: parseInt(tradeinfo.outputToken.amountRaw),
-      token_in_symbol: await getTokenSymbol(tradeinfo.inputToken.mint),
-      token_out_symbol: await getTokenSymbol(tradeinfo.outputToken.mint),
+      token_in_symbol: getTokenSymbol(tradeinfo.inputToken.mint),
+      token_out_symbol: getTokenSymbol(tradeinfo.outputToken.mint),
       token_in_decimals: tradeinfo.inputToken.decimals,
       token_out_decimals: tradeinfo.outputToken.decimals,
       usd_value: 0, //todo
@@ -403,8 +403,8 @@ export class DexParser {
    * Enhanced format method with protocol-specific handling
    * 根据不同协议进行特殊处理的增强格式化方法
    */
-  public async formatTradeSwapWithProtocol(tradeinfo: TradeInfo, moreEvents?: Record<string, any[]>): Promise<ResSwapStruct> {
-    const baseResult =await this.formatTradeSwap(tradeinfo);
+  public formatTradeSwapWithProtocol(tradeinfo: TradeInfo, moreEvents?: Record<string, any[]>): ResSwapStruct {
+    const baseResult = this.formatTradeSwap(tradeinfo);
 
     // 根据不同协议进行特殊处理
     switch (tradeinfo.amm) {
@@ -615,19 +615,18 @@ export class DexParser {
   /**
    * 便捷方法：直接从 ParseResult 格式化所有交易
    */
-  public async formatAllTrades(parseResult: ParseResult): Promise<ResSwapStruct[]> {
-    const trades = await Promise.all(
-        parseResult.trades.map(trade =>
-            this.formatTradeSwapWithProtocol(trade, parseResult.moreEvents)
-        )
+  public formatAllTrades(parseResult: ParseResult): ResSwapStruct[] {
+    const trades = parseResult.trades.map(trade =>
+      this.formatTradeSwapWithProtocol(trade, parseResult.moreEvents)
     );
+
     return trades;
   }
 
   /**
    * 处理解析结果，补充tokens、tokenPrices和userTradingSummary信息
    */
-  public async enhanceParseResult(parseResult: ParseResult): Promise<ParseResult> {
+  public enhanceParseResult(parseResult: ParseResult): ParseResult {
     // 处理token信息
     parseResult.result.tokens = this.extractTokenMetadata(parseResult);
 
@@ -638,7 +637,7 @@ export class DexParser {
     parseResult.result.userTradingSummary = this.generateUserTradingSummary(parseResult);
 
     // 格式化交易数据
-    parseResult.result.trades =await this.formatAllTrades(parseResult);
+    parseResult.result.trades = this.formatAllTrades(parseResult);
 
     return parseResult;
   }
@@ -886,7 +885,9 @@ export class DexParser {
       }
     }
 
-    return mint.slice(0, 6); // 使用mint地址前6位作为fallback
+    return "";
+
+    // return mint.slice(0, 6); // 使用mint地址前6位作为fallback
   }
 
   /**
@@ -999,7 +1000,7 @@ export class DexParser {
   /**
    * 增强版处理解析结果，包含流动性数据
    */
-  public async enhanceParseResultComplete(parseResult: ParseResult): Promise<ParseResult> {
+  public enhanceParseResultComplete(parseResult: ParseResult): ParseResult {
     // 处理token信息
     parseResult.result.tokens = this.extractTokenMetadata(parseResult);
 
@@ -1013,7 +1014,7 @@ export class DexParser {
     this.enhanceLiquidityData(parseResult);
 
     // 格式化交易数据
-    parseResult.result.trades = await this.formatAllTrades(parseResult);
+    parseResult.result.trades = this.formatAllTrades(parseResult);
 
     return parseResult;
   }
@@ -1021,8 +1022,9 @@ export class DexParser {
   /**
    * 最完整的解析方法，包含所有增强功能
    */
-  public async parseAllComplete(tx: SolanaTransaction, config?: ParseConfig): Promise<ParseResult> {
+  public parseAllComplete(tx: SolanaTransaction, config?: ParseConfig): ParseResult {
     const parseResult = this.parseWithClassifier(tx, config, 'all');
+
     return this.enhanceParseResultComplete(parseResult);
   }
 
@@ -1056,41 +1058,37 @@ export class DexParser {
 
 
   public async parsePerBlock(blockNumber: number, config?: ParseConfig): Promise<ParseResult[]> {
-    let start= Date.now();
+    let start = Date.now();
     let transactions = await getBlockValue(blockNumber);
     console.log(`fetch block ${blockNumber},cost:${Date.now() - start} ms`);
     if (transactions) {
-      start= Date.now();
+      start = Date.now();
       const validTransactions = transactions.transactions.filter(tx => !tx.meta?.err);
-      const parseResult = await Promise.all(
-          validTransactions.map((transaction) =>
-              this.parseAllComplete({
-                ...transaction,
-                blockTime: transactions.blockTime,
-                slot: blockNumber,
-                transaction: transaction.transaction,
-              })
-          )
-      );
+      const parseResult = validTransactions.map((transaction) =>
+        this.parseAllComplete({
+          ...transaction,
+          blockTime: transactions.blockTime,
+          slot: blockNumber,
+          transaction: transaction.transaction,
+        })
+      )
       console.log(`parse block ${blockNumber},cost:${Date.now() - start} ms`);
       return parseResult;
     }
     return [];
   }
 
-  public async parseBlockData(blockData:VersionedBlockResponse,blockNumber: number): Promise<ParseResult[]> {
-    let start= Date.now();
+  public parseBlockData(blockData: VersionedBlockResponse, blockNumber: number): ParseResult[] {
+    let start = Date.now();
     const validTransactions = blockData.transactions.filter(tx => !tx.meta?.err);
-    const parseResult = await Promise.all(
-        validTransactions.map((transaction) =>
-            this.parseAllComplete({
-              ...transaction,
-              blockTime: blockData.blockTime,
-              slot: blockNumber,
-              transaction: transaction.transaction,
-            })
-        )
-    );
+    const parseResult = validTransactions.map((transaction) =>
+        this.parseAllComplete({
+          ...transaction,
+          blockTime: blockData.blockTime,
+          slot: blockNumber,
+          transaction: transaction.transaction,
+        })
+      )
     console.log(`parse block ${blockNumber},cost:${Date.now() - start} ms`);
     return parseResult;
   }

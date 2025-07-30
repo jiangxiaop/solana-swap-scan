@@ -377,12 +377,12 @@ export class SolanaBlockDataHandler {
     }));
 
     await clickhouseClient.insert({
-      table: "solana_history_data",
+      table: "solana_history_data_new",
       values,
       format: "JSONEachRow",
     });
 
-    console.log(`✅ 插入 ${values.length} 条记录到 solana_history_data`);
+    console.log(`✅ 插入 ${values.length} 条记录到 solana_history_data_new`);
   }
 
 

@@ -27,11 +27,18 @@ const getBlockValue = async (blockNumber: number) => {
 Deno.test("测试获取交易信息", async () => {
     const startTime = Date.now();
     const parser = new DexParser();
-    const blockNumber = 347797409;
+    const blockNumber = 346937489;
     const transactions = await parser.parsePerBlock(blockNumber);
 
+    Deno.writeTextFileSync("parse-transactions.json", JSON.stringify(transactions, (key, value) => {
+        if (typeof value === 'bigint') {
+            return value.toString();
+        }
+        return value;
+    }, 2));
+
     // console.log(transactions.length);
-    
+
 
     const endTime = Date.now();
     console.log(`解析时间: ${endTime - startTime}ms`);

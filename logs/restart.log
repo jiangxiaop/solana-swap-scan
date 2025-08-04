@@ -1,0 +1,822 @@
+[2025-08-04 07:34:32] Port 8000 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8000: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8000: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8000: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8001 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8001: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8001: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8001: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8002 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8002: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8002: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8002: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8003 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8003: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8003: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8003: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8004 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8004: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8004: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8004: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8005 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8005: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8005: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8005: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8006 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8006: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8006: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8006: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8007 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8007: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8007: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8007: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8008 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8008: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8008: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8008: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8009 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8009: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8009: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8009: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8010 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8010: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8010: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8010: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8011 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8011: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8011: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8011: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8012 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8012: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8012: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8012: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8013 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8013: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8013: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8013: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8014 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8014: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8014: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8014: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8015 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8015: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8015: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8015: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8016 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8016: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8016: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8016: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8017 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8017: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8017: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8017: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8018 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8018: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8018: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8018: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8019 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8019: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8019: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8019: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8020 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8020: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8020: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8020: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8021 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8021: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8021: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8021: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8022 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8022: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8022: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8022: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8023 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8023: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8023: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8023: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8024 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8024: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8024: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8024: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8025 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8025: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8025: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8025: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8026 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8026: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8026: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8026: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8027 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8027: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8027: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8027: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8028 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8028: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8028: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8028: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8029 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8029: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8029: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8029: cooling_down - waiting=5s
+[2025-08-04 07:34:32] Port 8030 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:34:32] [INFO] Port 8030: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:34:32] [INFO] Port 8030: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:34:32] [INFO] Port 8030: cooling_down - waiting=5s
+[2025-08-04 07:34:37] [INFO] Port 8000: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8000: killing_existing_process - pid=204050
+[2025-08-04 07:34:37] [INFO] Port 8001: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8001: killing_existing_process - pid=204078
+[2025-08-04 07:34:37] [INFO] Port 8002: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8002: killing_existing_process - pid=204124
+[2025-08-04 07:34:37] [INFO] Port 8003: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8003: killing_existing_process - pid=204162
+[2025-08-04 07:34:37] [INFO] Port 8004: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8004: killing_existing_process - pid=204200
+[2025-08-04 07:34:37] [INFO] Port 8005: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8005: killing_existing_process - pid=204238
+[2025-08-04 07:34:37] [INFO] Port 8006: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8006: killing_existing_process - pid=204267
+[2025-08-04 07:34:37] [INFO] Port 8007: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8007: killing_existing_process - pid=204305
+[2025-08-04 07:34:37] [INFO] Port 8008: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8008: killing_existing_process - pid=204343
+[2025-08-04 07:34:37] [INFO] Port 8009: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8009: killing_existing_process - pid=204382
+[2025-08-04 07:34:37] [INFO] Port 8010: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8010: killing_existing_process - pid=204424
+[2025-08-04 07:34:37] [INFO] Port 8011: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8011: killing_existing_process - pid=204464
+[2025-08-04 07:34:37] [INFO] Port 8012: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8012: killing_existing_process - pid=204493
+[2025-08-04 07:34:37] [INFO] Port 8013: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8013: killing_existing_process - pid=204530
+[2025-08-04 07:34:37] [INFO] Port 8014: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8014: killing_existing_process - pid=204573
+[2025-08-04 07:34:37] [INFO] Port 8015: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8015: killing_existing_process - pid=204614
+[2025-08-04 07:34:37] [INFO] Port 8016: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8016: killing_existing_process - pid=204653
+[2025-08-04 07:34:37] [INFO] Port 8017: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8017: killing_existing_process - pid=204688
+[2025-08-04 07:34:37] [INFO] Port 8018: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8018: killing_existing_process - pid=204720
+[2025-08-04 07:34:37] [INFO] Port 8019: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8019: killing_existing_process - pid=204760
+[2025-08-04 07:34:37] [INFO] Port 8020: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8020: killing_existing_process - pid=204816
+[2025-08-04 07:34:37] [INFO] Port 8021: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8021: killing_existing_process - pid=204890
+[2025-08-04 07:34:37] [INFO] Port 8022: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8022: killing_existing_process - pid=204926
+[2025-08-04 07:34:37] [INFO] Port 8023: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8023: killing_existing_process - pid=204964
+[2025-08-04 07:34:37] [INFO] Port 8024: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8024: killing_existing_process - pid=205002
+[2025-08-04 07:34:37] [INFO] Port 8025: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8025: killing_existing_process - pid=205040
+[2025-08-04 07:34:37] [INFO] Port 8026: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8026: killing_existing_process - pid=205078
+[2025-08-04 07:34:37] [INFO] Port 8027: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8027: killing_existing_process - pid=205111
+[2025-08-04 07:34:37] [INFO] Port 8028: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8028: killing_existing_process - pid=205150
+[2025-08-04 07:34:37] [INFO] Port 8029: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8029: killing_existing_process - pid=205188
+[2025-08-04 07:34:37] [INFO] Port 8030: cleaning_resources - force=false
+[2025-08-04 07:34:37] [INFO] Port 8030: killing_existing_process - pid=205226
+[2025-08-04 07:44:05] [INFO] Port 8015: restart_count_reset - 
+[2025-08-04 07:44:27] Port 8000 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] Port 8001 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8000: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8000: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] Port 8002 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8001: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8001: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8000: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8002: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] Port 8003 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8001: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8002: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] Port 8004 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8003: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8002: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8003: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8004: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] Port 8005 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8003: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8004: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] Port 8006 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8005: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8004: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8005: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] Port 8007 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8006: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8005: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8006: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8007: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] Port 8008 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8007: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8006: cooling_down - waiting=5s
+[2025-08-04 07:44:27] Port 8009 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8008: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8007: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8008: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8009: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] Port 8010 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8009: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8008: cooling_down - waiting=5s
+[2025-08-04 07:44:27] Port 8011 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8010: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8009: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8010: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8011: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] Port 8012 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8011: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8010: cooling_down - waiting=5s
+[2025-08-04 07:44:27] Port 8013 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8011: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8012: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8012: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8013: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] Port 8014 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8013: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8012: cooling_down - waiting=5s
+[2025-08-04 07:44:27] Port 8015 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8013: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8014: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8014: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] Port 8016 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8015: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8014: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8015: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] Port 8017 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8016: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8016: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8015: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8017: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] Port 8018 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8016: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8017: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8018: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] Port 8019 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8018: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8017: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8019: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8018: cooling_down - waiting=5s
+[2025-08-04 07:44:27] Port 8020 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8019: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8020: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8019: cooling_down - waiting=5s
+[2025-08-04 07:44:27] Port 8021 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8020: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8021: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] Port 8022 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8021: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8020: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8022: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] Port 8023 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8022: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8021: cooling_down - waiting=5s
+[2025-08-04 07:44:27] Port 8024 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8023: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8022: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8023: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8024: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] Port 8025 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8024: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8023: cooling_down - waiting=5s
+[2025-08-04 07:44:27] Port 8026 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8025: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8024: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8025: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] Port 8027 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8026: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8026: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8025: cooling_down - waiting=5s
+[2025-08-04 07:44:27] Port 8028 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8026: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8027: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8027: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] Port 8029 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8028: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8028: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8027: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8029: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] Port 8030 restart #1 - Reason: consecutive_health_failures
+[2025-08-04 07:44:27] [INFO] Port 8029: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8028: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8030: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:27] [INFO] Port 8029: cooling_down - waiting=5s
+[2025-08-04 07:44:27] [INFO] Port 8030: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:27] [INFO] Port 8030: cooling_down - waiting=5s
+[2025-08-04 07:44:32] [INFO] Port 8000: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8001: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8002: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8003: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8004: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8005: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8006: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8007: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8008: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8009: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8010: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8011: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8012: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8013: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8014: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8015: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8016: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8001: killing_port_process - pid=204095
+[2025-08-04 07:44:32] [INFO] Port 8000: killing_port_process - pid=204058
+[2025-08-04 07:44:32] [INFO] Port 8003: killing_port_process - pid=204171
+[2025-08-04 07:44:32] [INFO] Port 8002: killing_port_process - pid=204132
+[2025-08-04 07:44:32] [INFO] Port 8004: killing_port_process - pid=204209
+[2025-08-04 07:44:32] [INFO] Port 8017: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8005: killing_port_process - pid=204247
+[2025-08-04 07:44:32] [INFO] Port 8018: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8006: killing_port_process - pid=204284
+[2025-08-04 07:44:32] [INFO] Port 8019: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8007: killing_port_process - pid=204322
+[2025-08-04 07:44:32] [INFO] Port 8020: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8008: killing_port_process - pid=204360
+[2025-08-04 07:44:32] [INFO] Port 8021: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8009: killing_port_process - pid=204394
+[2025-08-04 07:44:32] [INFO] Port 8022: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8010: killing_port_process - pid=204435
+[2025-08-04 07:44:32] [INFO] Port 8023: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8011: killing_port_process - pid=204473
+[2025-08-04 07:44:32] [INFO] Port 8024: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8012: killing_port_process - pid=204510
+[2025-08-04 07:44:32] [INFO] Port 8013: killing_port_process - pid=204547
+[2025-08-04 07:44:32] [INFO] Port 8025: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8026: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8014: killing_port_process - pid=204585
+[2025-08-04 07:44:32] [INFO] Port 8027: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8015: killing_port_process - pid=204622
+[2025-08-04 07:44:32] [INFO] Port 8028: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8016: killing_port_process - pid=204662
+[2025-08-04 07:44:32] [INFO] Port 8029: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8017: killing_port_process - pid=204700
+[2025-08-04 07:44:32] [INFO] Port 8030: cleaning_resources - force=false
+[2025-08-04 07:44:32] [INFO] Port 8018: killing_port_process - pid=204737
+[2025-08-04 07:44:32] [INFO] Port 8019: killing_port_process - pid=204783
+[2025-08-04 07:44:32] [INFO] Port 8020: killing_port_process - pid=204855
+[2025-08-04 07:44:32] [INFO] Port 8021: killing_port_process - pid=204905
+[2025-08-04 07:44:32] [INFO] Port 8022: killing_port_process - pid=204943
+[2025-08-04 07:44:32] [INFO] Port 8023: killing_port_process - pid=204981
+[2025-08-04 07:44:32] [INFO] Port 8024: killing_port_process - pid=205019
+[2025-08-04 07:44:32] [INFO] Port 8025: killing_port_process - pid=205057
+[2025-08-04 07:44:32] [INFO] Port 8030: killing_port_process - pid=205243
+[2025-08-04 07:44:32] [INFO] Port 8026: killing_port_process - pid=205090
+[2025-08-04 07:44:32] [INFO] Port 8027: killing_port_process - pid=205126
+[2025-08-04 07:44:32] [INFO] Port 8028: killing_port_process - pid=205167
+[2025-08-04 07:44:32] [INFO] Port 8029: killing_port_process - pid=205205
+[2025-08-04 07:44:34] [INFO] Port 8001: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8000: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8002: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8001: process_started - pid=209874
+[2025-08-04 07:44:34] [INFO] Port 8003: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8004: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8000: process_started - pid=209878
+[2025-08-04 07:44:34] [INFO] Port 8002: process_started - pid=209881
+[2025-08-04 07:44:34] [INFO] Port 8001: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8003: process_started - pid=209884
+[2025-08-04 07:44:34] [INFO] Port 8000: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8004: process_started - pid=209886
+[2025-08-04 07:44:34] [INFO] Port 8003: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8002: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8004: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8005: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8005: process_started - pid=209949
+[2025-08-04 07:44:34] [INFO] Port 8005: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8006: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8006: process_started - pid=209962
+[2025-08-04 07:44:34] [INFO] Port 8006: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8007: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8007: process_started - pid=209992
+[2025-08-04 07:44:34] [INFO] Port 8007: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8008: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8008: process_started - pid=210014
+[2025-08-04 07:44:34] [INFO] Port 8009: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8008: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8009: process_started - pid=210026
+[2025-08-04 07:44:34] [INFO] Port 8009: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8010: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8010: process_started - pid=210153
+[2025-08-04 07:44:34] [INFO] Port 8011: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8010: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8011: process_started - pid=210165
+[2025-08-04 07:44:34] [INFO] Port 8011: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8012: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8013: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8012: process_started - pid=210239
+[2025-08-04 07:44:34] [INFO] Port 8012: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8013: process_started - pid=210242
+[2025-08-04 07:44:34] [INFO] Port 8013: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8014: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8014: process_started - pid=210280
+[2025-08-04 07:44:34] [INFO] Port 8014: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8015: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8015: process_started - pid=210337
+[2025-08-04 07:44:34] [INFO] Port 8016: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8015: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8016: process_started - pid=210380
+[2025-08-04 07:44:34] [INFO] Port 8017: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8017: process_started - pid=210408
+[2025-08-04 07:44:34] [INFO] Port 8016: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8017: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8018: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8018: process_started - pid=210465
+[2025-08-04 07:44:34] [INFO] Port 8019: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8018: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8019: process_started - pid=210487
+[2025-08-04 07:44:34] [INFO] Port 8019: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8020: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8020: process_started - pid=210553
+[2025-08-04 07:44:34] [INFO] Port 8021: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8020: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8021: process_started - pid=210605
+[2025-08-04 07:44:34] [INFO] Port 8021: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8022: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8022: process_started - pid=210628
+[2025-08-04 07:44:34] [INFO] Port 8022: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8023: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8023: process_started - pid=210685
+[2025-08-04 07:44:34] [INFO] Port 8024: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8023: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8024: process_started - pid=210716
+[2025-08-04 07:44:34] [INFO] Port 8025: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8024: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8025: process_started - pid=210748
+[2025-08-04 07:44:34] [INFO] Port 8030: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8025: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8030: process_started - pid=210769
+[2025-08-04 07:44:34] [INFO] Port 8026: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8030: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8027: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8026: process_started - pid=210826
+[2025-08-04 07:44:34] [INFO] Port 8026: verifying_restart - timeout=30s
+[2025-08-04 07:44:34] [INFO] Port 8027: process_started - pid=210858
+[2025-08-04 07:44:34] [INFO] Port 8028: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8029: starting_new_process - attempt=1
+[2025-08-04 07:44:34] [INFO] Port 8027: verifying_restart - timeout=30s
+[2025-08-04 07:44:35] [INFO] Port 8029: process_started - pid=210879
+[2025-08-04 07:44:35] [INFO] Port 8028: process_started - pid=210874
+[2025-08-04 07:44:35] [INFO] Port 8029: verifying_restart - timeout=30s
+[2025-08-04 07:44:35] [INFO] Port 8028: verifying_restart - timeout=30s
+[2025-08-04 07:44:37] [INFO] Port 8001: restart_verified - success=true
+[2025-08-04 07:44:37] [INFO] Port 8001: restart_successful - attempt=1
+[2025-08-04 07:44:37] [INFO] Port 8030: restart_verified - success=true
+[2025-08-04 07:44:37] [INFO] Port 8030: restart_successful - attempt=1
+[2025-08-04 07:44:37] [INFO] Port 8004: restart_verified - success=true
+[2025-08-04 07:44:37] [INFO] Port 8004: restart_successful - attempt=1
+[2025-08-04 07:44:37] [INFO] Port 8014: restart_verified - success=true
+[2025-08-04 07:44:37] [INFO] Port 8014: restart_successful - attempt=1
+[2025-08-04 07:44:58] Port 8000 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8000: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8000: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8000: cooling_down - waiting=5s
+[2025-08-04 07:44:58] Port 8001 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] Port 8002 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8001: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8001: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8002: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] Port 8003 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8002: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8001: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8003: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8002: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8003: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8003: cooling_down - waiting=5s
+[2025-08-04 07:44:58] Port 8004 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] Port 8005 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8004: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8004: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8005: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8005: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] Port 8006 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8004: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8005: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8006: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] Port 8007 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8006: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8007: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8006: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8007: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] Port 8008 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8007: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8008: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] Port 8009 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8008: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8009: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] Port 8010 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8008: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8009: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8010: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8009: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8010: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] Port 8011 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8010: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8011: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] Port 8012 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8011: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8012: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8011: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8012: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] Port 8013 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8012: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8013: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8013: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8013: cooling_down - waiting=5s
+[2025-08-04 07:44:58] Port 8014 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] Port 8015 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8014: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8014: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] Port 8016 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8014: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8015: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8015: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8016: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8016: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] Port 8017 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8015: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8016: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8017: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8017: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] Port 8018 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8017: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8018: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8018: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] Port 8019 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8018: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8019: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] Port 8020 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8019: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8020: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8019: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8020: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] Port 8021 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8020: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8021: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] Port 8022 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8021: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8021: cooling_down - waiting=5s
+[2025-08-04 07:44:58] Port 8023 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8022: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8022: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8023: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8023: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8022: cooling_down - waiting=5s
+[2025-08-04 07:44:58] Port 8024 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8023: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8024: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] Port 8025 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8024: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8024: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8025: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] Port 8026 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8025: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8026: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8025: cooling_down - waiting=5s
+[2025-08-04 07:44:58] Port 8027 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8026: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8027: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8026: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8027: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] Port 8028 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8027: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8028: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] Port 8029 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8028: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8029: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8028: cooling_down - waiting=5s
+[2025-08-04 07:44:58] [INFO] Port 8029: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8029: cooling_down - waiting=5s
+[2025-08-04 07:44:58] Port 8030 restart #2 - Reason: consecutive_health_failures
+[2025-08-04 07:44:58] [INFO] Port 8030: progressive_restart_started - reason=consecutive_health_failures, attempt=1
+[2025-08-04 07:44:58] [INFO] Port 8030: restart_strategy - phase=quick, interval=5s
+[2025-08-04 07:44:58] [INFO] Port 8030: cooling_down - waiting=5s
+[2025-08-04 07:45:03] [INFO] Port 8000: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8001: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8001: killing_existing_process - pid=209874
+[2025-08-04 07:45:03] [INFO] Port 8002: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8003: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8000: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8000: process_started - pid=213967
+[2025-08-04 07:45:03] [INFO] Port 8000: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8002: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8002: process_started - pid=213992
+[2025-08-04 07:45:03] [INFO] Port 8002: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8003: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8004: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8003: process_started - pid=214029
+[2025-08-04 07:45:03] [INFO] Port 8003: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8004: killing_existing_process - pid=209886
+[2025-08-04 07:45:03] [INFO] Port 8005: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8006: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8007: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8008: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8009: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8010: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8006: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8011: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8006: process_started - pid=214155
+[2025-08-04 07:45:03] [INFO] Port 8006: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8007: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8007: process_started - pid=214170
+[2025-08-04 07:45:03] [INFO] Port 8012: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8007: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8013: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8008: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8008: process_started - pid=214216
+[2025-08-04 07:45:03] [INFO] Port 8008: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8005: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8009: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8005: process_started - pid=214232
+[2025-08-04 07:45:03] [INFO] Port 8009: process_started - pid=214235
+[2025-08-04 07:45:03] [INFO] Port 8005: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8009: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8010: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8010: process_started - pid=214286
+[2025-08-04 07:45:03] [INFO] Port 8010: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8011: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8011: process_started - pid=214344
+[2025-08-04 07:45:03] [INFO] Port 8011: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8012: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8012: process_started - pid=214369
+[2025-08-04 07:45:03] [INFO] Port 8012: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8014: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8013: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8014: killing_existing_process - pid=210280
+[2025-08-04 07:45:03] [INFO] Port 8013: process_started - pid=214452
+[2025-08-04 07:45:03] [INFO] Port 8013: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8015: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8016: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8017: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8018: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8019: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8020: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8021: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8015: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8015: process_started - pid=214648
+[2025-08-04 07:45:03] [INFO] Port 8016: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8015: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8016: process_started - pid=214660
+[2025-08-04 07:45:03] [INFO] Port 8016: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8022: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8017: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8017: process_started - pid=214703
+[2025-08-04 07:45:03] [INFO] Port 8017: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8023: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8018: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8018: process_started - pid=214734
+[2025-08-04 07:45:03] [INFO] Port 8018: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8024: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8019: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8019: process_started - pid=214759
+[2025-08-04 07:45:03] [INFO] Port 8019: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8025: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8026: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8021: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8021: process_started - pid=214865
+[2025-08-04 07:45:03] [INFO] Port 8021: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8027: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8022: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8022: process_started - pid=214917
+[2025-08-04 07:45:03] [INFO] Port 8028: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8022: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8023: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8023: process_started - pid=214953
+[2025-08-04 07:45:03] [INFO] Port 8023: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8029: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8024: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8020: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8024: process_started - pid=215004
+[2025-08-04 07:45:03] [INFO] Port 8024: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8020: process_started - pid=215008
+[2025-08-04 07:45:03] [INFO] Port 8020: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8025: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8025: process_started - pid=215073
+[2025-08-04 07:45:03] [INFO] Port 8025: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8026: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8026: process_started - pid=215121
+[2025-08-04 07:45:03] [INFO] Port 8026: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8027: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8027: process_started - pid=215169
+[2025-08-04 07:45:03] [INFO] Port 8027: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8028: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8028: process_started - pid=215233
+[2025-08-04 07:45:03] [INFO] Port 8028: verifying_restart - timeout=30s
+[2025-08-04 07:45:03] [INFO] Port 8030: cleaning_resources - force=false
+[2025-08-04 07:45:03] [INFO] Port 8030: killing_existing_process - pid=210769
+[2025-08-04 07:45:03] [INFO] Port 8029: starting_new_process - attempt=1
+[2025-08-04 07:45:03] [INFO] Port 8029: process_started - pid=215289
+[2025-08-04 07:45:03] [INFO] Port 8029: verifying_restart - timeout=30s
+[2025-08-04 07:45:05] [ERROR] Port 8005: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8011: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8005: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8011: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8006: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8006: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8013: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8020: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8013: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8020: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8000: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8000: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8017: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8017: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8007: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8007: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8003: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8003: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8008: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8008: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8028: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8028: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8010: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8010: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8009: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8023: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8009: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8023: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8002: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8002: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8016: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8021: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8016: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8021: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8027: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8027: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8018: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8018: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8026: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8026: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8012: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8012: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8019: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8019: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8024: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8024: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8015: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8015: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8022: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8022: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8025: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8025: restart_failed - attempt=1
+[2025-08-04 07:45:05] [ERROR] Port 8029: restart_verification_failed - timeout_reached
+[2025-08-04 07:45:05] [ERROR] Port 8029: restart_failed - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8000: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8000: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8002: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8002: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8003: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8003: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8006: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8006: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8007: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8007: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8008: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8008: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8005: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8005: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8009: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8009: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8010: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8010: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8011: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8011: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8012: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8012: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8013: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8013: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8015: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8015: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8016: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8016: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8017: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8017: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8018: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8018: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8019: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8019: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8021: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8021: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8022: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8022: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8023: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8023: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8024: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8020: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8024: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8020: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8025: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8025: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8026: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8026: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8027: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8027: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8028: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8028: restart_successful - attempt=1
+[2025-08-04 07:45:05] [INFO] Port 8029: restart_verified - success=true
+[2025-08-04 07:45:05] [INFO] Port 8029: restart_successful - attempt=1

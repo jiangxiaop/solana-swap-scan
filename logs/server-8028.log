@@ -2271,3 +2271,120 @@ quoteSymbol not support 3TgKjFHBHK34LjbTfMtWkgQ9zEhoVV2GrtkrW7UEzbEd, skipping t
 ✅ 插入 9293 条记录到 solana_history_data_new
 HIGH PERFORMANCE: parse 100 blocks, cost: 3285 ms
 [Port 8028] server total use, cost: 3285 ms
+100
+parse block 324445333,cost:22 ms
+parse block 324445332,cost:17 ms
+parse block 324445331,cost:25 ms
+parse block 324445330,cost:15 ms
+parse block 324445329,cost:20 ms
+parse block 324445328,cost:25 ms
+parse block 324445327,cost:16 ms
+parse block 324445326,cost:23 ms
+parse block 324445325,cost:12 ms
+parse block 324445324,cost:18 ms
+parse block 324445323,cost:33 ms
+parse block 324445322,cost:30 ms
+parse block 324445321,cost:21 ms
+parse block 324445320,cost:30 ms
+parse block 324445319,cost:15 ms
+parse block 324445318,cost:18 ms
+parse block 324445317,cost:22 ms
+parse block 324445316,cost:49 ms
+parse block 324445315,cost:12 ms
+parse block 324445314,cost:19 ms
+parse block 324445313,cost:30 ms
+parse block 324445312,cost:22 ms
+parse block 324445311,cost:11 ms
+parse block 324445310,cost:21 ms
+parse block 324445309,cost:20 ms
+parse block 324445308,cost:27 ms
+parse block 324445307,cost:15 ms
+parse block 324445306,cost:17 ms
+parse block 324445305,cost:29 ms
+parse block 324445304,cost:25 ms
+parse block 324445303,cost:25 ms
+parse block 324445302,cost:41 ms
+parse block 324445301,cost:21 ms
+parse block 324445300,cost:22 ms
+parse block 324445299,cost:23 ms
+parse block 324445298,cost:24 ms
+parse block 324445297,cost:30 ms
+parse block 324445296,cost:24 ms
+parse block 324445295,cost:35 ms
+parse block 324445294,cost:28 ms
+parse block 324445293,cost:25 ms
+parse block 324445292,cost:23 ms
+parse block 324445291,cost:11 ms
+parse block 324445290,cost:35 ms
+parse block 324445289,cost:31 ms
+parse block 324445288,cost:18 ms
+parse block 324445287,cost:13 ms
+parse block 324445286,cost:9 ms
+parse block 324445285,cost:38 ms
+parse block 324445284,cost:27 ms
+parse block 324445283,cost:14 ms
+parse block 324445282,cost:16 ms
+parse block 324445281,cost:24 ms
+parse block 324445280,cost:28 ms
+parse block 324445279,cost:12 ms
+parse block 324445278,cost:27 ms
+parse block 324445277,cost:16 ms
+parse block 324445276,cost:9 ms
+parse block 324445275,cost:38 ms
+parse block 324445274,cost:36 ms
+parse block 324445273,cost:31 ms
+parse block 324445272,cost:52 ms
+parse block 324445271,cost:4 ms
+parse block 324445270,cost:8 ms
+parse block 324445269,cost:8 ms
+parse block 324445268,cost:2 ms
+parse block 324445267,cost:27 ms
+parse block 324445266,cost:19 ms
+parse block 324445265,cost:15 ms
+parse block 324445264,cost:59 ms
+parse block 324445263,cost:26 ms
+parse block 324445262,cost:17 ms
+parse block 324445261,cost:52 ms
+parse block 324445260,cost:12 ms
+parse block 324445259,cost:12 ms
+parse block 324445258,cost:12 ms
+parse block 324445257,cost:23 ms
+parse block 324445256,cost:20 ms
+parse block 324445255,cost:47 ms
+parse block 324445254,cost:25 ms
+parse block 324445253,cost:25 ms
+parse block 324445252,cost:10 ms
+parse block 324445251,cost:20 ms
+parse block 324445250,cost:19 ms
+parse block 324445249,cost:25 ms
+parse block 324445248,cost:29 ms
+parse block 324445247,cost:37 ms
+parse block 324445246,cost:46 ms
+parse block 324445245,cost:27 ms
+parse block 324445244,cost:20 ms
+parse block 324445243,cost:15 ms
+parse block 324445242,cost:10 ms
+parse block 324445241,cost:21 ms
+parse block 324445240,cost:23 ms
+parse block 324445239,cost:39 ms
+parse block 324445238,cost:18 ms
+parse block 324445237,cost:31 ms
+parse block 324445236,cost:42 ms
+parse block 324445235,cost:17 ms
+parse block 324445234,cost:20 ms
+quoteSymbol not support As3DHyZ7yHZeHTQsZUyKYXiz54iqDRq2RM4j5hc7RMEM, skipping transaction zHnXsQa9wvwDMMNu2qYwwj58fsF3aG9Vn7zwgLtibTSnanQ78qt4XGyFxBarGykkojGNvm7KjmzMJJwdTfvHvCE
+Invalid quoteAddress: undefined, skipping transaction 3QAnarYpGbRwy19r13Ay2Bi3JB8YVe4AKYzvj52KFxL4QQkxybSnR8rh5JTrgxqido2YBa8rLbTQAvRzgRnu64TP
+quoteSymbol not support BhTmkfyNwqaaxbyNtdzaVhMXmJyVx22xhZjefuiXVgxi, skipping transaction 53CTVzZiETFqrHNNGGCz1M8aBGNB6YCeuuvYwy2fHf8YV4Pip6PHT7ApiZ8c7vj5jq8nMsyHE3acehiTBiPgphW7
+quoteSymbol not support CJMAcgBmBBLRuRi6gNrU9Di2AY37XdZJM2NnbkvSpump, skipping transaction 5vZKhHYAjJdumkUALcf7XqyFTvB7B4Ycdxc786hX97g3g7rSjDTceQqPR1jVsbEEi3rse4SGK5nJYFgzkEcDK3oh
+Invalid tokenAmount: 0, skipping transaction 2GWjzKGKKxA7hSYvd9Q2fkQfDRj2HSurF7Rn2nSCcMf7mYTLKM52MTDUBCTkvfY4PzUtSYbFgNQmtSeZcctr7qYa
+quoteSymbol not support 6G4kijVSay47QvJ7WmFekySgCtJ8fTx9928DsEEVpump, skipping transaction oii7QQk4aSYJBDd8CSdc1pjta4Uew6RV7JSNmT1SNq66gNxpKZyugkanPpU7f637DtcBFrnqf3inF3kikMQUDkr
+quoteSymbol not support 8AWCTWCpb1dEtqUTuEjQsAfq4z4vVhuk5F77ZYXYpump, skipping transaction 5HG1kto3GBzHKgozERq41dzsXXY6FdrS8LSdzq7CZewRXyVSUhNz4tct3t6C9EwMvfKvc9mfvRGHHsuezzpmPk3q
+quoteSymbol not support AxGAbdFtdbj2oNXa4dKqFvwHzgFtW9mFHWmd7vQfpump, skipping transaction 2uMPHjEaHRtLqKnFh14UrSYFJJKwQoeJnaT8RkfDHogLdrBaX5nGM362LWVP6miRvQSZCbBgrVja2tdesqp8QZzq
+quoteSymbol not support AxGAbdFtdbj2oNXa4dKqFvwHzgFtW9mFHWmd7vQfpump, skipping transaction 2KXfFBi7MPFYpyKEHBm5RMm4S2Qx9vCCyMh9g6G9wQzAT4Empg6WrHeBPxyX4q3hq6DjUqJEYqTyxnN1x2rSEdv1
+quoteSymbol not support E7zZTtViByfvBoSbXd7kEMSUe7eNpUh7GYdJjxjKThe2, skipping transaction 4H69N3EGMA71dC6XthQyF5WouqhdPyBUcXdUVhwtNLE3bvX3XNJ3fGhhkoAv8HZQfUWwz6geRjW6t9s7e3kZoaZT
+quoteSymbol not support 7gjWKuKQ7cK9Xdd8fQzj954h43roTRfNxcSVFyCkTBxe, skipping transaction 3C2jtSdTgsxMVQCWFCrPnRDmTy1bmze4xyxHTbEjNe5PEZB6H7CfoWTrqymsGCF4Ms33KWs1p5pUvraX2UCYCNZ8
+quoteSymbol not support 8x5VqbHA8D7NkD52uNuS5nnt3PwA8pLD34ymskeSo2Wn, skipping transaction 2DvEXRnMrPyrfsfHwfztbTRw5gGZVoN8aQPcoWZqxSkbKvkzkacPb5sDxb8SWq7AUZSDfquqP2wLz6q7hSVAGCuK
+Invalid tokenAmount: 0, skipping transaction 5ZKv4SEuPhjEHvJzrZKi2sc2x3dLcRWbLm82WeM8uDbRJgPD8o7gopJ3x55DsqfQx46zEwi5AajtuMKtKAxwhfG7
+✅ 插入 7577 条记录到 solana_history_data_new
+HIGH PERFORMANCE: parse 100 blocks, cost: 2792 ms
+[Port 8028] server total use, cost: 2807 ms

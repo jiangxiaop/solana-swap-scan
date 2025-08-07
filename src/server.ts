@@ -28,16 +28,30 @@ Deno.serve({ port }, async (req) => {
                 console.log(data.length);
 
 
-                const parseResult = await SolanaBlockDataHandler.handleMultiBlockData(data);
+                await SolanaBlockDataHandler.handleMultiBlockData(data);
 
                 console.log(`[Port ${port}] server total use, cost: ${Date.now() - start} ms`);
+
+                // 打印当前端口内存占用情况
+                // @ts-ignore: Deno is available in runtime
+                const memoryUsage = Deno.memoryUsage();
+                console.log(`[Port ${port}] 内存占用情况:`, {
+                    rss: `${Math.round(memoryUsage.rss / 1024 / 1024)} MB`,
+                    heapTotal: `${Math.round(memoryUsage.heapTotal / 1024 / 1024)} MB`,
+                    heapUsed: `${Math.round(memoryUsage.heapUsed / 1024 / 1024)} MB`,
+                    external: `${Math.round(memoryUsage.external / 1024 / 1024)} MB`
+                });
+
+                if (global.gc) {
+                    global.gc();
+                }
 
                 return new Response(JSON.stringify({
                     success: true,
                     port,
                     processedBlocks: data.length,
                     processingTime: Date.now() - start,
-                    data: parseResult
+                    data: {}
                 }), {
                     headers: { "Content-Type": "application/json" }
                 });

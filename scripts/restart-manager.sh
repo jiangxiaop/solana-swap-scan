@@ -181,7 +181,7 @@ start_new_process() {
         --allow-env \
         --allow-read \
         --allow-write \
-        --v8-flags="--no-memory-saver-mode" \
+        --v8-flags="--no-memory-saver-mode,--max-old-space-size=3072,--initial-heap-size=1024,--expose-gc" \
         "$SCRIPT_PATH" "$port" \
         > "$LOG_DIR/server-$port.log" 2>&1 &
     

@@ -40,11 +40,11 @@ export class SolanaBlockDataHandler {
   ) {
 
     const start = Date.now();
-    
+
     // 检查是否启用高性能模式（通过环境变量控制）
     // @ts-ignore: Deno is available in runtime
     const isHighPerformanceMode = Deno.env.get("HIGH_PERFORMANCE_MODE") === "true";
-    
+
     if (isHighPerformanceMode) {
       return await this.handleMultiBlockDataHighPerformance(data, start);
     } else {
@@ -100,7 +100,7 @@ export class SolanaBlockDataHandler {
 
     for (let i = 0; i < data.length; i += BATCH_SIZE) {
       const batch = data.slice(i, i + BATCH_SIZE);
-      
+
       try {
         // 限制并发处理批次
         const batchResults = await Promise.all(batch.map(async (block) => {
@@ -116,12 +116,12 @@ export class SolanaBlockDataHandler {
         const batchTransactions: SwapTransaction[] = [];
         for (const result of batchResults) {
           batchTransactions.push(...result);
-          
+
           // 如果累积的数据太多，立即保存并清理
           if (batchTransactions.length > MAX_MEMORY_ITEMS) {
             await this.insertToHistoryTable(batchTransactions);
             batchTransactions.length = 0; // 清空数组
-            
+
             // 强制垃圾回收（如果可用）
             this.forceGarbageCollection();
           }
@@ -248,36 +248,60 @@ export class SolanaBlockDataHandler {
     }
 
     // 验证数据完整性
-    if (!tokenAmount || tokenAmount <= 0) {
-      console.log(`Invalid tokenAmount: ${tokenAmount}, skipping transaction ${txHash}`);
-      return null;
-    }
+    // if (!tokenAmount || tokenAmount <= 0) {
+    //   console.log(`Invalid tokenAmount: ${tokenAmount}, skipping transaction ${txHash}`);
+    //   return null;
+    // }
 
-    if (!quoteAmount || quoteAmount <= 0) {
-      console.log(`Invalid quoteAmount: ${quoteAmount}, skipping transaction ${txHash}`);
-      return null;
-    }
+    // if (!quoteAmount || quoteAmount <= 0) {
+    //   console.log(`Invalid quoteAmount: ${quoteAmount}, skipping transaction ${txHash}`);
+    //   return null;
+    // }
 
     // 使用安全除法避免除零错误
     quotePrice = MathUtil.safeDivide(quoteAmount, tokenAmount, "0");
-    quotePrice = MathUtil.toFixed(quotePrice);
     
-    // 验证 quoteAddress 是否有效
-    if (!quoteAddress || typeof quoteAddress !== 'string') {
-      console.log(`Invalid quoteAddress: ${quoteAddress}, skipping transaction ${txHash}`);
+    // 验证 quotePrice 是否超过 ClickHouse Decimal(18,8) 的限制
+    // Decimal(18,8) 最大整数值：10^10 - 1 = 9,999,999,999
+    const maxDecimalValue = 9999999999.99999999;
+    const quotePriceNum = parseFloat(quotePrice);
+    
+    if (quotePriceNum > maxDecimalValue) {
+      console.log(`quotePrice ${quotePrice} exceeds ClickHouse Decimal(18,8) limit, skipping transaction ${txHash}`);
       return null;
     }
     
+    quotePrice = MathUtil.toFixed(quotePrice);
+
+    // 验证 quoteAddress 是否有效
+    if (!quoteAddress || typeof quoteAddress !== 'string') {
+      quoteAddress = ""
+    }
+
     quoteSymbol = SOLANA_DEX_ADDRESS_TO_NAME[quoteAddress];
     if (!quoteSymbol) {
-      console.log(`quoteSymbol not support ${quoteAddress}, skipping transaction ${txHash}`);
-      return null;
+      quoteSymbol = "";
     }
     const quoteTokenUSDPrice = 1
     let usdPrice = MathUtil.multiply(quotePrice, quoteTokenUSDPrice); //quotePrice * quoteTokenUSDPrice;
     usdPrice = MathUtil.toFixed(usdPrice);
     let usdAmount = MathUtil.multiply(quoteTokenUSDPrice, quoteAmount); //quoteAmount * usdPrice;
     usdAmount = MathUtil.toFixed(usdAmount);
+    
+    // 验证 usdPrice 和 usdAmount 是否超过 ClickHouse Decimal(18,8) 的限制
+    const usdPriceNum = parseFloat(usdPrice);
+    const usdAmountNum = parseFloat(usdAmount);
+    
+    if (usdPriceNum > maxDecimalValue) {
+      console.log(`usdPrice ${usdPrice} exceeds ClickHouse Decimal(18,8) limit, skipping transaction ${txHash}`);
+      return null;
+    }
+    
+    if (usdAmountNum > maxDecimalValue) {
+      console.log(`usdAmount ${usdAmount} exceeds ClickHouse Decimal(18,8) limit, skipping transaction ${txHash}`);
+      return null;
+    }
+
     const data = {
       txHash,
       transactionTime,
